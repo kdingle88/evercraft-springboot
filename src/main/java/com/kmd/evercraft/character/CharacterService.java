@@ -12,5 +12,6 @@ public class CharacterService {
     public Character addCharacter(Character character) {
 
         return characterRepository.save(character);
+
     }
 }
