@@ -24,6 +24,9 @@ public class CharacterControllerIntTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    CharacterRepository characterRepository;
+
     @Test
     public void createCharacter() throws Exception {
 
@@ -44,8 +47,11 @@ public class CharacterControllerIntTest {
 
     @Test
     public void charactersCanFight() throws Exception {
-        Character character1 = new Character();
-        Character character2 = new Character();
+        Character character1 = new Character(1L,"John","GOOD");
+        Character character2 = new Character(2L, "Kevin", "GOOD");
+
+        characterRepository.save(character1);
+        characterRepository.save(character2);
 
         URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight");
         HttpHeaders headers = new HttpHeaders();
