@@ -67,4 +67,8 @@ public class Character {
     public boolean attack(Character characterAttacked, int roll) {
         return characterAttacked.armor <= roll;
     }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
 }
