@@ -24,7 +24,10 @@ public class CharacterController {
 
     @PutMapping(path = "/fight")
     public void fightCharacters(@RequestBody List<Character> fightingCharacters) {
+        Character character1 = fightingCharacters.get(0);
+        Character character2 = fightingCharacters.get(1);
 
+        characterService.fightCharacters(character1,character2);
     }
 
 }
