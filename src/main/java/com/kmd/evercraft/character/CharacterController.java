@@ -1,10 +1,9 @@
 package com.kmd.evercraft.character;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/characters")
@@ -21,6 +20,11 @@ public class CharacterController {
     public Character createCharacter(@RequestBody Character character) {
 
         return characterService.addCharacter(character);
+    }
+
+    @PutMapping(path = "/fight")
+    public void fightCharacters(@RequestBody List<Character> fightingCharacters) {
+
     }
 
 }

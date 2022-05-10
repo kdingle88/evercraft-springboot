@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
+
+import java.net.URI;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,5 +40,29 @@ public class CharacterControllerIntTest {
         assertEquals("GOOD",json.getString("alignment"));
         assertEquals("10",json.getString("armor"));
         assertEquals("5",json.getString("hitPoints"));
+    }
+
+    @Test
+    public void charactersCanFight() throws Exception {
+        Character character1 = new Character();
+        Character character2 = new Character();
+
+        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<List<Character>> fightingCharactersRequest = new HttpEntity<>(List.of(character1, character2), headers);
+
+
+        ResponseEntity<List<Character>> responseEntity = this.restTemplate.exchange(
+                uri,
+                HttpMethod.PUT,
+                fightingCharactersRequest,
+                new ParameterizedTypeReference<>() {
+                }
+                );
+
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+
     }
 }
