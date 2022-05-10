@@ -27,6 +27,20 @@ class CharacterServiceTest {
     CharacterRepository characterRepository;
 
     @Test
+    public void fightCharactersShouldFindCharacters() {
+        Character character1 = new Character(1L,"Cloud","GOOD");
+        Character character2 = new Character(2L, "Tifa","GOOD");
+
+        when(characterRepository.findById(1L)).thenReturn(Optional.of(character1));
+        when(characterRepository.findById(2L)).thenReturn(Optional.of(character2));
+
+        characterService.fightCharacters(character1, character2);
+
+        verify(characterRepository,times(1)).findById(eq(character1.getId()));
+        verify(characterRepository, times(1)).findById(eq(character2.getId()));
+    }
+
+    @Test
     public void fightCharactersShouldSaveUpdatedCharacters() {
         Character character1 = new Character(1L,"Cloud","GOOD");
         Character character2 = new Character(2L, "Tifa","GOOD");

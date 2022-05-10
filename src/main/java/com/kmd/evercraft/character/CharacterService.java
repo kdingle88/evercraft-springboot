@@ -18,8 +18,17 @@ public class CharacterService {
     }
 
     public void fightCharacters(Character character1, Character character2) {
-        characterRepository.save(character1);
-        characterRepository.save(character2);
+        Character attackingCharacter = characterRepository.findById(character1.getId())
+                .orElseThrow(() -> new IllegalStateException("Character with id " + character1.getId() + " does not exist." ));
+
+        Character attackedCharacter = characterRepository.findById(character2.getId())
+                .orElseThrow(() -> new IllegalStateException("Character with id " + character2.getId() + " does not exist." ));
+
+        int roll = 11;
+
+        List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter,roll);
+
+        updatedCharacters.stream().forEach(character -> characterRepository.save(character));
 
     }
 
