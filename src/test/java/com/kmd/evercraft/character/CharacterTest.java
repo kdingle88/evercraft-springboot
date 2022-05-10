@@ -19,4 +19,15 @@ public class CharacterTest {
 
         assertEquals(5,character.getHitPoints());
     }
+
+    @Test
+    public void charactersFightHit() {
+        Character character1 = new Character();
+        Character character2 = new Character();
+        int roll = 10;
+
+        boolean isHit = character1.attack(character2,roll);
+
+        assertEquals(true, isHit);
+    }
 }
