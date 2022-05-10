@@ -24,7 +24,7 @@ public class CharacterService {
         Character attackedCharacter = characterRepository.findById(character2.getId())
                 .orElseThrow(() -> new IllegalStateException("Character with id " + character2.getId() + " does not exist." ));
 
-        int roll = 11;
+        int roll = (int)(Math.random() * (20)) + 1;
 
         List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter,roll);
 
@@ -37,10 +37,8 @@ public class CharacterService {
         boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
 
         if(isHit) {
-            int currentHp = attackedCharacter.getHitPoints();
-            int rollArmorDifference = roll - attackedCharacter.getArmor();
 
-            attackedCharacter.setHitPoints(currentHp - rollArmorDifference);
+            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 1);
         }
 
         return List.of(attackingCharacter,attackedCharacter);
