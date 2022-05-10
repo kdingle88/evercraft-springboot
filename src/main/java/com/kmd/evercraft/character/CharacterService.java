@@ -17,6 +17,12 @@ public class CharacterService {
 
     }
 
+    public void fightCharacters(Character character1, Character character2) {
+        characterRepository.save(character1);
+        characterRepository.save(character2);
+
+    }
+
     public List<Character> fight(Character attackingCharacter, Character attackedCharacter, int roll) {
 
         boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
@@ -31,4 +37,5 @@ public class CharacterService {
         return List.of(attackingCharacter,attackedCharacter);
 
     }
+
 }
