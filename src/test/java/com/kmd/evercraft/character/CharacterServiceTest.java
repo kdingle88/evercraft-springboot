@@ -4,11 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,30 +24,28 @@ class CharacterServiceTest {
 
     @Test
     public void fightCharactersShouldFindCharacters() {
-        Character character1 = new Character(1L,"Cloud","GOOD");
-        Character character2 = new Character(2L, "Tifa","GOOD");
+        List<Character> characters = generateCharacters();
 
-        when(characterRepository.findById(1L)).thenReturn(Optional.of(character1));
-        when(characterRepository.findById(2L)).thenReturn(Optional.of(character2));
+        when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
+        when(characterRepository.findById(2L)).thenReturn(Optional.of(characters.get(1)));
 
-        characterService.fightCharacters(character1, character2);
+        characterService.fightCharacters(characters.get(0), characters.get(1));
 
-        verify(characterRepository,times(1)).findById(eq(character1.getId()));
-        verify(characterRepository, times(1)).findById(eq(character2.getId()));
+        verify(characterRepository,times(1)).findById(eq(characters.get(0).getId()));
+        verify(characterRepository, times(1)).findById(eq(characters.get(1).getId()));
     }
 
     @Test
     public void fightCharactersShouldSaveUpdatedCharacters() {
-        Character character1 = new Character(1L,"Cloud","GOOD");
-        Character character2 = new Character(2L, "Tifa","GOOD");
+        List<Character> characters = generateCharacters();
 
-        when(characterRepository.findById(1L)).thenReturn(Optional.of(character1));
-        when(characterRepository.findById(2L)).thenReturn(Optional.of(character2));
+        when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
+        when(characterRepository.findById(2L)).thenReturn(Optional.of(characters.get(1)));
 
-        characterService.fightCharacters(character1, character2);
+        characterService.fightCharacters(characters.get(0), characters.get(1));
 
-        verify(characterRepository,times(1)).save(eq(character1));
-        verify(characterRepository, times(1)).save(eq(character2));
+        verify(characterRepository,times(1)).save(eq(characters.get(0)));
+        verify(characterRepository, times(1)).save(eq(characters.get(1)));
     }
 
     @Test
@@ -67,5 +61,18 @@ class CharacterServiceTest {
 
         assertEquals(4,updatedCharacter2.getHitPoints());
 
+    }
+
+    @Test
+    public void characterFightLowerRollShouldLowerAttackedHP() {
+
+    }
+
+    public List<Character> generateCharacters() {
+        Character character1 = new Character(1L,"Cloud","GOOD");
+        Character character2 = new Character(2L, "Tifa","GOOD");
+
+
+        return List.of(character1,character2);
     }
 }
