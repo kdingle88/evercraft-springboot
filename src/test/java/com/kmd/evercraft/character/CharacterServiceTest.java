@@ -49,7 +49,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void fightHigherRollShouldLowerAttackedHP() {
+    public void fightHigherRollThanAttackedArmorLowersHP() {
         List<Character> characters = generateCharacters();
 
         int roll = 11;
@@ -63,7 +63,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void fightEqualRollShouldLowerAttackedHP() {
+    public void fightEqualRollToAttackedArmorLowersHP() {
         List<Character> characters = generateCharacters();
 
         int roll = 10;
@@ -77,7 +77,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void fightLowerRollShouldKeepAttackedHPTheSame() {
+    public void fightLowerRollThanAttackedArmorKeepsHPTheSame() {
         List<Character> characters = generateCharacters();
 
         int roll = 9;
