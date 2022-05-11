@@ -49,7 +49,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void characterFightHigherRollShouldLowerAttackedHP() {
+    public void fightHigherRollShouldLowerAttackedHP() {
         Character character1 = new Character();
         Character character2 = new Character();
 
@@ -64,7 +64,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void characterFightLowerRollShouldLowerAttackedHP() {
+    public void fightLowerRollShouldKeepAttackedHPTheSame() {
 
     }
 
