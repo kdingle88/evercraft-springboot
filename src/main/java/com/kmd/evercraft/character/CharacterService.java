@@ -49,13 +49,13 @@ public class CharacterService {
             attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - (2 * attackingCharacter.getModifier(attackingCharacter.getStrength())));
 
 
-            return List.of(attackingCharacter,attackedCharacter);
+            return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
         }
 
         if(isHit) {
             attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 1 );
             attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - attackingCharacter.getModifier(attackingCharacter.getStrength()));
-            return List.of(attackingCharacter,attackedCharacter);
+            return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
         }
 
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
