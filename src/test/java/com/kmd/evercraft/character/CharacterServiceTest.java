@@ -117,6 +117,24 @@ class CharacterServiceTest {
         assertEquals(3,updatedCharacter2.getHitPoints());
     }
 
+    @Test
+    public void attackingStrengthModifierIncreasesRollAndDamageDealt() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        attackingCharacter.setStrength(12);
+
+        int roll = 9 + attackingCharacter.getModifier(attackingCharacter.getStrength());
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
+
+        Character updatedAttackedCharacter = updatedCharacters.get(1);
+
+        assertEquals(3,updatedAttackedCharacter.getHitPoints());
+    }
+
 
 
 

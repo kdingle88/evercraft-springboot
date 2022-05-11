@@ -84,6 +84,10 @@ public class Character {
         return strength;
     }
 
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
     public int getDexterity() {
         return dexterity;
     }
@@ -102,5 +106,9 @@ public class Character {
 
     public int getCharisma() {
         return charisma;
+    }
+
+    public int getModifier(int score) {
+        return score == 12 ? 1 : 0;
     }
 }
