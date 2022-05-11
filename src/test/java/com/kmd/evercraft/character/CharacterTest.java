@@ -42,4 +42,11 @@ public class CharacterTest {
         assertEquals(10,character.getCharisma());
     }
 
+    @Test
+    public void testGetModifier() {
+
+        assertEquals(-5,Character.getModifier(1));
+
+    }
+
 }

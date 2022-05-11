@@ -1,6 +1,8 @@
 package com.kmd.evercraft.character;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Character {
@@ -108,7 +110,13 @@ public class Character {
         return charisma;
     }
 
-    public int getModifier(int score) {
-        return score == 12 ? 1 : 0;
+    public static Integer getModifier(int score) {
+        Map<Integer, Integer> modifierTable = new HashMap();
+
+        modifierTable.put(1, -5);
+        modifierTable.put(10, 0);
+        modifierTable.put(12, 1);
+
+        return modifierTable.get(score);
     }
 }
