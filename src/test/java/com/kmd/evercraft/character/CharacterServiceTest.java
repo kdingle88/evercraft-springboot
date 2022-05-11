@@ -50,12 +50,11 @@ class CharacterServiceTest {
 
     @Test
     public void fightHigherRollShouldLowerAttackedHP() {
-        Character character1 = new Character();
-        Character character2 = new Character();
+        List<Character> characters = generateCharacters();
 
         int roll = 11;
 
-        List<Character> updatedCharacters = characterService.fight(character1, character2, roll);
+        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
 
         Character updatedCharacter2 = updatedCharacters.get(1);
 
@@ -65,6 +64,7 @@ class CharacterServiceTest {
 
     @Test
     public void fightLowerRollShouldKeepAttackedHPTheSame() {
+
 
     }
 
