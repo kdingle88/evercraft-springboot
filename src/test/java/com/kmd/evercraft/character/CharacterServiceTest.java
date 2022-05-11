@@ -90,6 +90,19 @@ class CharacterServiceTest {
 
     }
 
+    @Test
+    public void fightCriticalRollLowersAttackedHpByDouble() {
+        List<Character> characters = generateCharacters();
+
+        int roll = 20;
+
+        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
+
+        Character updatedCharacter2 = updatedCharacters.get(1);
+
+        assertEquals(3,updatedCharacter2.getHitPoints());
+    }
+
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud","GOOD");
         Character character2 = new Character(2L, "Tifa","GOOD");

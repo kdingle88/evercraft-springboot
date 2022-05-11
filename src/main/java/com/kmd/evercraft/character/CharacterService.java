@@ -35,10 +35,17 @@ public class CharacterService {
     public List<Character> fight(Character attackingCharacter, Character attackedCharacter, int roll) {
 
         boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
+        boolean isCriticalHit = roll == 20;
+
+        if(isCriticalHit) {
+            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 2);
+
+            return List.of(attackingCharacter,attackedCharacter);
+        }
 
         if(isHit) {
-
             attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 1);
+            return List.of(attackingCharacter,attackedCharacter);
         }
 
         return List.of(attackingCharacter,attackedCharacter);
