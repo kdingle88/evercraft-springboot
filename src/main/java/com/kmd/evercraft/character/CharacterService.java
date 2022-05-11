@@ -42,10 +42,12 @@ public class CharacterService {
     public List<Character> fight(Character attackingCharacter, Character attackedCharacter, int roll) {
 
         boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
-        boolean isCriticalHit = roll == 20;
+        boolean isCriticalHit = roll - attackingCharacter.getModifier(attackingCharacter.getStrength()) == 20;
 
         if(isCriticalHit) {
             attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 2);
+            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - (2 * attackingCharacter.getModifier(attackingCharacter.getStrength())));
+
 
             return List.of(attackingCharacter,attackedCharacter);
         }

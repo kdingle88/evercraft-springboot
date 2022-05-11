@@ -135,7 +135,25 @@ class CharacterServiceTest {
         assertEquals(3,updatedAttackedCharacter.getHitPoints());
     }
 
+    @Test
+    public void attackingStrengthModifierDoubledWithCritical() {
+        List<Character> characters = generateCharacters();
 
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        attackingCharacter.setStrength(12);
+
+        int naturalRoll = 20;
+
+        int roll = naturalRoll + attackingCharacter.getModifier(attackingCharacter.getStrength());
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
+
+        Character updatedAttackedCharacter = updatedCharacters.get(1);
+
+        assertEquals(1,updatedAttackedCharacter.getHitPoints());
+    }
 
 
     public List<Character> generateCharacters() {
