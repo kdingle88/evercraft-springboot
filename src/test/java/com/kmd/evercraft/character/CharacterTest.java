@@ -46,6 +46,8 @@ public class CharacterTest {
     public void testGetModifier() {
 
         assertEquals(-5,Character.getModifier(1));
+        assertEquals(0,Character.getModifier(10));
+        assertEquals(1,Character.getModifier(12));
 
     }
 

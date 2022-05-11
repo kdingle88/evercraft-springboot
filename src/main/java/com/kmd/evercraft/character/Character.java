@@ -111,12 +111,9 @@ public class Character {
     }
 
     public static Integer getModifier(int score) {
-        Map<Integer, Integer> modifierTable = new HashMap();
 
-        modifierTable.put(1, -5);
-        modifierTable.put(10, 0);
-        modifierTable.put(12, 1);
+        int modifier = (int)Math.floor(score / 2) - 5;
 
-        return modifierTable.get(score);
+        return Integer.valueOf(modifier);
     }
 }
