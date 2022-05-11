@@ -47,6 +47,20 @@ class CharacterServiceTest {
         verify(characterRepository,times(1)).save(eq(characters.get(0)));
         verify(characterRepository, times(1)).save(eq(characters.get(1)));
     }
+    @Test
+    public void fightCharactersDeletesCharactersWhenHPIsZero() {
+        List<Character> characters = generateCharacters();
+
+        when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
+        when(characterRepository.findById(3L)).thenReturn(Optional.of(characters.get(2)));
+
+        characterService.fightCharacters(characters.get(0), characters.get(2));
+
+        verify(characterRepository,times(1)).delete(eq(characters.get(2)));
+
+        verify(characterRepository,times(1)).save(eq(characters.get(0)));
+        verify(characterRepository,times(0)).save(eq(characters.get(2)));
+    }
 
     @Test
     public void fightHigherRollThanAttackedArmorLowersHP() {
@@ -103,11 +117,16 @@ class CharacterServiceTest {
         assertEquals(3,updatedCharacter2.getHitPoints());
     }
 
+
+
+
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud","GOOD");
         Character character2 = new Character(2L, "Tifa","GOOD");
+        Character dyingCharacter = new Character(3L, "Barret","NEUTRAL");
 
+        dyingCharacter.setHitPoints(0);
 
-        return List.of(character1,character2);
+        return List.of(character1,character2, dyingCharacter);
     }
 }

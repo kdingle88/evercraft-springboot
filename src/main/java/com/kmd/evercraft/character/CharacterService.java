@@ -3,6 +3,8 @@ package com.kmd.evercraft.character;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,6 +30,11 @@ public class CharacterService {
 
         List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter,roll);
 
+        if(isCharacterDead(updatedCharacters.get(1))) {
+            characterRepository.delete(updatedCharacters.get(1));
+            updatedCharacters.remove(1);
+        }
+
         updatedCharacters.stream().forEach(character -> characterRepository.save(character));
 
     }
@@ -48,8 +55,11 @@ public class CharacterService {
             return List.of(attackingCharacter,attackedCharacter);
         }
 
-        return List.of(attackingCharacter,attackedCharacter);
+        return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
 
     }
 
+    public boolean isCharacterDead(Character character) {
+        return character.getHitPoints() <= 0;
+    }
 }
