@@ -63,6 +63,20 @@ class CharacterServiceTest {
     }
 
     @Test
+    public void fightEqualRollShouldLowerAttackedHP() {
+        List<Character> characters = generateCharacters();
+
+        int roll = 10;
+
+        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
+
+        Character updatedCharacter2 = updatedCharacters.get(1);
+
+        assertEquals(4,updatedCharacter2.getHitPoints());
+
+    }
+
+    @Test
     public void fightLowerRollShouldKeepAttackedHPTheSame() {
         List<Character> characters = generateCharacters();
 
