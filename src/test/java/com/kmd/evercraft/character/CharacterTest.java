@@ -30,4 +30,16 @@ public class CharacterTest {
 
         assertEquals(true, isHit);
     }
+    @Test
+    public void testAbilities() {
+        Character character = new Character();
+
+        assertEquals(10,character.getStrength());
+        assertEquals(10,character.getDexterity());
+        assertEquals(10,character.getConstitution());
+        assertEquals(10,character.getWisdom());
+        assertEquals(10,character.getIntelligence());
+        assertEquals(10,character.getCharisma());
+    }
+
 }
