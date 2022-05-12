@@ -68,7 +68,7 @@ public class Character {
 
     public int getArmor() {
 
-        return armor + getModifier(getDexterity());
+        return armor;
     }
 
     public void setArmor(int armor) {
@@ -100,6 +100,9 @@ public class Character {
     }
 
     public void setDexterity(int dexterity) {
+
+        setArmor(armor + getModifier(dexterity));
+
         this.dexterity = dexterity;
     }
 
