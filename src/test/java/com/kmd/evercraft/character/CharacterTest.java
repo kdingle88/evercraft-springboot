@@ -76,7 +76,19 @@ public class CharacterTest {
         character.setConstitution(1);
 
         assertEquals(1,character.getHitPoints());
+    }
 
+    @Test
+    public void testStartingLevel() {
+        Character character = new Character();
+
+        assertEquals(1, character.getLevel());
+    }
+    @Test
+    public void testStartingXP() {
+        Character character = new Character();
+
+        assertEquals(0, character.getXP());
     }
 
 }

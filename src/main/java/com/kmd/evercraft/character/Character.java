@@ -24,6 +24,8 @@ public class Character {
     private int wisdom = 10;
     private int intelligence = 10;
     private int charisma = 10;
+    private int level = 1;
+    private int xp = 0;
 
     public Character(String name) {
     }
@@ -135,5 +137,13 @@ public class Character {
         int modifier = (int)Math.floor(score / 2) - 5;
 
         return Integer.valueOf(modifier);
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getXP() {
+        return xp;
     }
 }
