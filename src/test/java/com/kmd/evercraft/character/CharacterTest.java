@@ -51,4 +51,12 @@ public class CharacterTest {
 
     }
 
+    @Test
+    public void testAddDexterityModifierToArmor() {
+        Character character = new Character();
+
+        character.setDexterity(12);
+
+        assertEquals(11,character.getArmor());
+    }
 }
