@@ -71,7 +71,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(11).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
+        doReturn(11).when(characterService).getNaturalRoll();
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -87,7 +87,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(10).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
+        doReturn(10).when(characterService).getNaturalRoll();
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -104,7 +104,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(9).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
+        doReturn(9).when(characterService).getNaturalRoll();
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
