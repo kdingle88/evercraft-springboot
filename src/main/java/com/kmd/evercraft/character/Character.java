@@ -76,7 +76,7 @@ public class Character {
     }
 
     public int getHitPoints() {
-        return hitPoints;
+        return hitPoints + getModifier(getConstitution());
     }
 
     public boolean attack(Character characterAttacked, int roll) {
@@ -84,7 +84,11 @@ public class Character {
     }
 
     public void setHitPoints(int hitPoints) {
+        int modifiedHP = hitPoints + getModifier(getConstitution());
+
         this.hitPoints = hitPoints;
+
+//        this.hitPoints = Math.max(modifiedHP, 1);
     }
 
     public int getStrength() {
@@ -105,6 +109,10 @@ public class Character {
 
     public int getConstitution() {
         return constitution;
+    }
+
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
     }
 
     public int getWisdom() {

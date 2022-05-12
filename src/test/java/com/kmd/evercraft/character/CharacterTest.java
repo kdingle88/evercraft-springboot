@@ -59,4 +59,24 @@ public class CharacterTest {
 
         assertEquals(11,character.getArmor());
     }
+
+    @Test
+    public void testAddConstitutionModifierToHP() {
+        Character character = new Character();
+
+        character.setConstitution(15);
+
+        assertEquals(7, character.getHitPoints());
+    }
+
+//    @Test
+//    public void testStartingHPisAtLeastOne() {
+//        Character character = new Character();
+//
+//        character.setConstitution(1);
+//
+//        assertEquals(1,character.getHitPoints());
+//
+//    }
+
 }
