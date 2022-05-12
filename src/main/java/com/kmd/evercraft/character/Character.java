@@ -1,8 +1,6 @@
 package com.kmd.evercraft.character;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class Character {
@@ -27,8 +25,6 @@ public class Character {
     private int level = 1;
     private int xp = 0;
 
-    public Character(String name) {
-    }
 
     public Character() {
     }
