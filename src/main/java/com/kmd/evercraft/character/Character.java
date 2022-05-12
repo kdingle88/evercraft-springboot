@@ -144,7 +144,15 @@ public class Character {
     }
 
     private void setLevel(int xp) {
-        this.level = (int)(xp / 1000) + 1;
+
+        int newLevel = (int)(xp / 1000) + 1;
+
+        if(level < newLevel) {
+            level = newLevel;
+
+            setHitPoints(getHitPoints() + (5 + getModifier(getConstitution())));
+        }
+
     }
 
     public int getXP() {

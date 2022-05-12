@@ -107,5 +107,25 @@ public class CharacterTest {
 
         assertEquals(10,character.getLevel());
     }
+    @Test
+    public void testHPIncreaseOnLevelUp() {
+        Character character = new Character();
+
+        character.setXP(1000);
+
+        assertEquals(10, character.getHitPoints());
+    }
+
+    @Test
+    public void testHPIncreaseOnNegativeModifier() {
+        Character character = new Character();
+
+        character.setConstitution(1);
+
+        character.setXP(1000);
+
+        assertEquals(1, character.getHitPoints());
+    }
+
 
 }
