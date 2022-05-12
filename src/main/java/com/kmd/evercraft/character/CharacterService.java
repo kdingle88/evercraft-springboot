@@ -43,23 +43,31 @@ public class CharacterService {
 
         boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
         boolean isCriticalHit = roll - attackingCharacter.getModifier(attackingCharacter.getStrength()) == 20;
-
-        if(isCriticalHit) {
-            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 2);
-            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - (2 * attackingCharacter.getModifier(attackingCharacter.getStrength())));
-
-
-            return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
-        }
+        int damage = 0;
 
         if(isHit) {
-            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - 1 );
-            attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - attackingCharacter.getModifier(attackingCharacter.getStrength()));
-            return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
+            damage += calculateDamage(attackingCharacter);
         }
+
+        if(isCriticalHit) {
+            damage += calculateDamage(attackingCharacter);
+        }
+
+        attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - damage);
+
 
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
 
+    }
+
+    private int calculateDamage(Character attackingCharacter) {
+        int damage = 1;
+        int modifier = Character.getModifier(attackingCharacter.getStrength());
+
+        if(modifier > 0) {
+            damage += modifier;
+        }
+        return damage;
     }
 
     public boolean isCharacterDead(Character character) {

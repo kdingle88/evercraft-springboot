@@ -155,6 +155,25 @@ class CharacterServiceTest {
         assertEquals(1,updatedAttackedCharacter.getHitPoints());
     }
 
+    @Test
+    public void minimumDamageIsOne() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        attackingCharacter.setStrength(1);
+
+        int roll = 20;
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
+
+        Character updatedAttackedCharacter = updatedCharacters.get(1);
+
+        assertEquals(4,updatedAttackedCharacter.getHitPoints());
+
+    }
+
 
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud","GOOD");
