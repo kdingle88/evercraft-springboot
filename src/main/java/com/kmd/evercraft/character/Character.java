@@ -143,7 +143,18 @@ public class Character {
         return level;
     }
 
+    private void setLevel(int xp) {
+        this.level = (int)(xp / 1000) + 1;
+    }
+
     public int getXP() {
         return xp;
+    }
+
+    public void setXP(int xp) {
+        this.xp = xp;
+
+        this.setLevel(this.xp);
+
     }
 }

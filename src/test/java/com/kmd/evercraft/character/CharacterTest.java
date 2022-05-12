@@ -91,4 +91,21 @@ public class CharacterTest {
         assertEquals(0, character.getXP());
     }
 
+    @Test
+    public void testLevelWith1000XPIs2() {
+        Character character = new Character();
+
+        character.setXP(1000);
+
+        assertEquals(2,character.getLevel());
+    }
+    @Test
+    public void testLevelWith9000XPIs10() {
+        Character character = new Character();
+
+        character.setXP(9000);
+
+        assertEquals(10,character.getLevel());
+    }
+
 }
