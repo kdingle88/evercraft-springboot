@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.*;
 class CharacterServiceTest {
 
     @InjectMocks
+    @Spy
     CharacterService characterService = new CharacterService();
 
     @Mock
@@ -66,27 +68,32 @@ class CharacterServiceTest {
     public void fightHigherRollThanAttackedArmorLowersHP() {
         List<Character> characters = generateCharacters();
 
-        int roll = 11;
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
 
-        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
+        doReturn(11).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
 
-        Character updatedCharacter2 = updatedCharacters.get(1);
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
-        assertEquals(4,updatedCharacter2.getHitPoints());
+        Character damagedCharacter = updatedCharacters.get(1);
 
+        assertEquals(4,damagedCharacter.getHitPoints());
     }
 
     @Test
     public void fightEqualRollToAttackedArmorLowersHP() {
         List<Character> characters = generateCharacters();
 
-        int roll = 10;
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
 
-        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
+        doReturn(10).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
 
-        Character updatedCharacter2 = updatedCharacters.get(1);
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
-        assertEquals(4,updatedCharacter2.getHitPoints());
+        Character damagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(4,damagedCharacter.getHitPoints());
 
     }
 
@@ -94,13 +101,16 @@ class CharacterServiceTest {
     public void fightLowerRollThanAttackedArmorKeepsHPTheSame() {
         List<Character> characters = generateCharacters();
 
-        int roll = 9;
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
 
-        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
+        doReturn(9).when(characterService).getTotalRoll(eq(attackingCharacter),anyInt());
 
-        Character updatedCharacter2 = updatedCharacters.get(1);
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
-        assertEquals(5,updatedCharacter2.getHitPoints());
+        Character notDamagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(5,notDamagedCharacter.getHitPoints());
 
     }
 
@@ -108,72 +118,50 @@ class CharacterServiceTest {
     public void fightCriticalRollLowersAttackedHpByDouble() {
         List<Character> characters = generateCharacters();
 
-        int roll = 20;
-
-        List<Character> updatedCharacters = characterService.fight(characters.get(0), characters.get(1), roll);
-
-        Character updatedCharacter2 = updatedCharacters.get(1);
-
-        assertEquals(3,updatedCharacter2.getHitPoints());
-    }
-
-    @Test
-    public void attackingStrengthModifierIncreasesRollAndDamageDealt() {
-        List<Character> characters = generateCharacters();
-
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        attackingCharacter.setStrength(12);
+        doReturn(20).when(characterService).getNaturalRoll();
 
-        int roll = 9 + attackingCharacter.getModifier(attackingCharacter.getStrength());
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
-        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
+        Character damagedCharacter = updatedCharacters.get(1);
 
-        Character updatedAttackedCharacter = updatedCharacters.get(1);
-
-        assertEquals(3,updatedAttackedCharacter.getHitPoints());
+        assertEquals(3,damagedCharacter.getHitPoints());
     }
 
     @Test
-    public void attackingStrengthModifierDoubledWithCritical() {
+    public void attackingStrengthModifierIncreasesTotalRoll() {
         List<Character> characters = generateCharacters();
 
         Character attackingCharacter = characters.get(0);
-        Character attackedCharacter = characters.get(1);
 
         attackingCharacter.setStrength(12);
 
-        int naturalRoll = 20;
+        int roll = 9;
+        int rollWithModifer = characterService.getTotalRoll(attackingCharacter,roll);
 
-        int roll = naturalRoll + attackingCharacter.getModifier(attackingCharacter.getStrength());
-
-        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
-
-        Character updatedAttackedCharacter = updatedCharacters.get(1);
-
-        assertEquals(1,updatedAttackedCharacter.getHitPoints());
+        assertEquals(10,rollWithModifer);
     }
 
     @Test
-    public void minimumDamageIsOne() {
+    public void minimumDamageIsOneOnCritical() {
         List<Character> characters = generateCharacters();
 
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
         attackingCharacter.setStrength(1);
+        attackedCharacter.setArmor(21);
 
-        int roll = 20;
+        doReturn(20).when(characterService).getNaturalRoll();
 
-        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter, roll);
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
-        Character updatedAttackedCharacter = updatedCharacters.get(1);
+        Character damagedCharacter = updatedCharacters.get(1);
 
-        assertEquals(4,updatedAttackedCharacter.getHitPoints());
-
+        assertEquals(4,damagedCharacter.getHitPoints());
     }
-
 
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud","GOOD");

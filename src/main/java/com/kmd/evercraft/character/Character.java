@@ -70,6 +70,10 @@ public class Character {
         return armor;
     }
 
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
+
     public int getHitPoints() {
         return hitPoints;
     }

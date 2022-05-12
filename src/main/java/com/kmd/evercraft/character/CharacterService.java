@@ -26,9 +26,7 @@ public class CharacterService {
         Character attackedCharacter = characterRepository.findById(character2.getId())
                 .orElseThrow(() -> new IllegalStateException("Character with id " + character2.getId() + " does not exist." ));
 
-        int roll = (int)(Math.random() * (20)) + 1 + attackingCharacter.getModifier(attackingCharacter.getStrength());
-
-        List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter,roll);
+        List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter);
 
         if(isCharacterDead(updatedCharacters.get(1))) {
             characterRepository.delete(updatedCharacters.get(1));
@@ -39,10 +37,14 @@ public class CharacterService {
 
     }
 
-    public List<Character> fight(Character attackingCharacter, Character attackedCharacter, int roll) {
+    public List<Character> fight(Character attackingCharacter, Character attackedCharacter) {
 
-        boolean isHit = attackingCharacter.attack(attackedCharacter,roll);
-        boolean isCriticalHit = roll - attackingCharacter.getModifier(attackingCharacter.getStrength()) == 20;
+        int naturalRoll = getNaturalRoll();
+        int totalRoll = getTotalRoll(attackingCharacter, naturalRoll);
+
+        boolean isHit = attackingCharacter.attack(attackedCharacter,totalRoll);
+        boolean isCriticalHit = naturalRoll == 20;
+
         int damage = 0;
 
         if(isHit) {
@@ -58,6 +60,14 @@ public class CharacterService {
 
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
 
+    }
+
+    int getNaturalRoll() {
+        return (int) (Math.random() * (20)) + 1;
+    }
+
+    int getTotalRoll(Character attackingCharacter, int naturalRoll) {
+        return naturalRoll + attackingCharacter.getModifier(attackingCharacter.getStrength());
     }
 
     private int calculateDamage(Character attackingCharacter) {
