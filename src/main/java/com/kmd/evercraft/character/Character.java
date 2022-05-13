@@ -139,7 +139,7 @@ public class Character {
         return level;
     }
 
-    private void setLevel(int xp) {
+    protected void setLevel(int xp) {
 
         int newLevel = (int)(xp / 1000) + 1;
 
