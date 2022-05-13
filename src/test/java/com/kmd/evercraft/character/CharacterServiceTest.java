@@ -165,13 +165,13 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void attackIncreaseWithLevel() {
+    public void attackIncreaseWithEvenLevel() {
         List<Character> characters = generateCharacters();
 
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        attackingCharacter.setXP(1000);
+        attackingCharacter.setXP(3000);
 
         doReturn(9).when(characterService).getNaturalRoll();
 
