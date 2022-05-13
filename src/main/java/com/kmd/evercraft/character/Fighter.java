@@ -28,11 +28,13 @@ public class Fighter extends Character {
     protected void setLevel(int xp) {
 
         int newLevel = (int) (xp / 1000) + 1;
+        int baseHealthMultiplier = (int) (xp / 1000);
 
         if (getLevel() < newLevel) {
-            setLevel(newLevel);
 
-            setHitPoints(getHitPoints() + (10 + getModifier(getConstitution())));
+            this.level = newLevel;
+
+            setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + getModifier(getConstitution())));
         }
     }
 }

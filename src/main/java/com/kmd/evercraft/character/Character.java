@@ -22,7 +22,7 @@ public class Character {
     private int wisdom = 10;
     private int intelligence = 10;
     private int charisma = 10;
-    private int level = 1;
+    protected int level = 1;
     private int xp = 0;
 
 
@@ -142,11 +142,12 @@ public class Character {
     protected void setLevel(int xp) {
 
         int newLevel = (int)(xp / 1000) + 1;
+        int baseHealthMultiplier = (int) (xp / 1000);
 
         if(level < newLevel) {
             level = newLevel;
 
-            setHitPoints(getHitPoints() + (5 + getModifier(getConstitution())));
+            setHitPoints(getHitPoints() + (5 * baseHealthMultiplier + getModifier(getConstitution())));
         }
 
     }

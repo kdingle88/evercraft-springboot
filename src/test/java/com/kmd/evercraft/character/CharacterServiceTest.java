@@ -211,11 +211,15 @@ class CharacterServiceTest {
 
         doReturn(8).when(characterService).getNaturalRoll();
 
+        System.out.println(attacking.getXP());
+        System.out.println(attacking.getLevel());
+        System.out.println(attacking.getHitPoints());
         List<Character> updatedCharacters = characterService.fight(attacking, attacked);
+
 
         Character damaged = updatedCharacters.get(1);
 
-        assertEquals(4,damaged.getHitPoints());
+        assertEquals(9,damaged.getHitPoints());
 
     }
 
@@ -230,8 +234,8 @@ class CharacterServiceTest {
     }
 
     public List<Character> generateFighters() {
-        Character fightingCharacter1 = new Fighter(11L,"Maco",GOOD);
-        Character fightingCharacter2 = new Fighter(12L,"Blaze",NEUTRAL);
+        Fighter fightingCharacter1 = new Fighter(11L,"Maco",GOOD);
+        Fighter fightingCharacter2 = new Fighter(12L,"Blaze",NEUTRAL);
 
         return List.of(fightingCharacter1,fightingCharacter2);
 
