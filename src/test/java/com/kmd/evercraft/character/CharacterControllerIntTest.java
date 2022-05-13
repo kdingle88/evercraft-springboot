@@ -12,6 +12,7 @@ import org.springframework.http.*;
 import java.net.URI;
 import java.util.List;
 
+import static com.kmd.evercraft.character.CharacterAlignment.GOOD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,7 +31,7 @@ public class CharacterControllerIntTest {
     @Test
     public void createCharacter() throws Exception {
 
-        Character character = new Character(1L,"Cloud","GOOD");
+        Character character = new Character(1L,"Cloud",GOOD);
 
         ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/api/v1/characters", character, String.class);
 
@@ -47,8 +48,8 @@ public class CharacterControllerIntTest {
 
     @Test
     public void charactersCanFight() throws Exception {
-        Character character1 = new Character(1L,"John","GOOD");
-        Character character2 = new Character(2L, "Kevin", "GOOD");
+        Character character1 = new Character(1L,"John",GOOD);
+        Character character2 = new Character(2L, "Kevin", GOOD);
 
         characterRepository.save(character1);
         characterRepository.save(character2);

@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
+import static com.kmd.evercraft.character.CharacterAlignment.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -183,9 +184,9 @@ class CharacterServiceTest {
     }
 
     public List<Character> generateCharacters() {
-        Character character1 = new Character(1L,"Cloud","GOOD");
-        Character character2 = new Character(2L, "Tifa","GOOD");
-        Character dyingCharacter = new Character(3L, "Barret","NEUTRAL");
+        Character character1 = new Character(1L,"Cloud",GOOD);
+        Character character2 = new Character(2L, "Barret",NEUTRAL);
+        Character dyingCharacter = new Character(3L, "Sephiroth",EVIL);
 
         dyingCharacter.setHitPoints(0);
 

@@ -9,7 +9,7 @@ public class Character {
     @Id
     private Long id;
     private String name;
-    private String alignment;
+    private CharacterAlignment  alignment;
 
     private int armor = 10;
 
@@ -29,13 +29,13 @@ public class Character {
     public Character() {
     }
 
-    public Character(Long id, String name, String alignment) {
+    public Character(Long id, String name, CharacterAlignment alignment) {
         this.id = id;
         this.name = name;
         this.alignment = alignment;
     }
 
-    public Character(String name, String alignment) {
+    public Character(String name, CharacterAlignment alignment) {
         this.name = name;
         this.alignment = alignment;
     }
@@ -56,11 +56,11 @@ public class Character {
         this.name = name;
     }
 
-    public String getAlignment() {
+    public CharacterAlignment getAlignment() {
         return alignment;
     }
 
-    public void setAlignment(String alignment) {
+    public void setAlignment(CharacterAlignment alignment) {
         this.alignment = alignment;
     }
 
