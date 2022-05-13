@@ -183,6 +183,24 @@ class CharacterServiceTest {
 
     }
     @Test
+    public void attackStaysWithOddLevel() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        attackingCharacter.setXP(2000);
+
+        doReturn(8).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
+
+        Character damagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(5,damagedCharacter.getHitPoints());
+
+    }
+    @Test
     public void fighterAttackIncreaseEveryLevelIncrease() {
         List<Character> fighters = generateFighters();
 
