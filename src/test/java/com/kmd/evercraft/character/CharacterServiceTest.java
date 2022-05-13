@@ -182,6 +182,24 @@ class CharacterServiceTest {
         assertEquals(4,damagedCharacter.getHitPoints());
 
     }
+    @Test
+    public void fighterAttackIncreaseEveryLevelIncrease() {
+        List<Character> fighters = generateFighters();
+
+        Character attacking = fighters.get(0);
+        Character attacked = fighters.get(1);
+
+        attacking.setXP(2000);
+
+        doReturn(8).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attacking, attacked);
+
+        Character damaged = updatedCharacters.get(1);
+
+        assertEquals(4,damaged.getHitPoints());
+
+    }
 
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud",GOOD);
@@ -191,5 +209,13 @@ class CharacterServiceTest {
         dyingCharacter.setHitPoints(0);
 
         return List.of(character1,character2, dyingCharacter);
+    }
+
+    public List<Character> generateFighters() {
+        Character fightingCharacter1 = new Fighter(11L,"Maco",GOOD);
+        Character fightingCharacter2 = new Fighter(12L,"Blaze",NEUTRAL);
+
+        return List.of(fightingCharacter1,fightingCharacter2);
+
     }
 }

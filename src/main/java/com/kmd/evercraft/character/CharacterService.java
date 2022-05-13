@@ -68,9 +68,15 @@ public class CharacterService {
 
     int getTotalRoll(Character attackingCharacter, int naturalRoll) {
         int strengthMod = Character.getModifier(attackingCharacter.getStrength());
-        int levelMod = attackingCharacter.getLevel() / 2;
+        int levelMod = getLevelMod(attackingCharacter);
 
         return naturalRoll + strengthMod + levelMod;
+    }
+
+    private int getLevelMod(Character attackingCharacter) {
+        int level = attackingCharacter.getLevel();
+
+        return attackingCharacter instanceof Fighter ? level : level / 2;
     }
 
     private int calculateDamage(Character attackingCharacter) {

@@ -9,7 +9,7 @@ public class Character {
     @Id
     private Long id;
     private String name;
-    private CharacterAlignment  alignment;
+    private CharacterAlignment alignment;
 
     private int armor = 10;
 
