@@ -141,15 +141,15 @@ public class Character {
 
     protected void setLevel(int xp) {
 
-        int newLevel = (int)(xp / 1000) + 1;
-        int baseHealthMultiplier = (int) (xp / 1000);
+        int xpToLevel = xp / 1000;
+        int newLevel = xpToLevel + 1;
+        int baseHealthMultiplier = xpToLevel;
 
         if(level < newLevel) {
             level = newLevel;
 
             setHitPoints(getHitPoints() + (5 * baseHealthMultiplier + getModifier(getConstitution())));
         }
-
     }
 
     public int getXP() {
@@ -165,5 +165,20 @@ public class Character {
 
     public void addXP(int xp) {
         this.xp += xp;
+
+        this.setLevel(this.xp);
+    }
+
+    public void addLevel(int xp) {
+        int xpToLevel = xp / 1000;
+        int newLevel = xpToLevel + 1;
+        int baseHealthMultiplier = xpToLevel;
+
+        if(level < newLevel) {
+            level = newLevel;
+
+            setHitPoints(getHitPoints() + (5 * baseHealthMultiplier + getModifier(getConstitution())));
+
+        }
     }
 }

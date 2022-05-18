@@ -145,4 +145,13 @@ public class CharacterTest {
 
         assertEquals(1000, character.getXP());
     }
+
+    @Test
+    public void addLevelIncreasesLevel() {
+        Character character = new Character();
+
+        character.addLevel(1000);
+
+        assertEquals(2,character.getLevel());
+    }
 }
