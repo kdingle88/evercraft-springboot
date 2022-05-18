@@ -127,5 +127,22 @@ public class CharacterTest {
         assertEquals(1, character.getHitPoints());
     }
 
+    @Test
+    public void addXPIncreasesXP() {
+        Character character = new Character();
 
+        character.addXP(1000);
+
+        assertEquals(1000, character.getXP());
+    }
+
+    @Test
+    public void add500XPTwiceTotals1000XP() {
+        Character character = new Character();
+
+        character.addXP(500);
+        character.addXP(500);
+
+        assertEquals(1000, character.getXP());
+    }
 }

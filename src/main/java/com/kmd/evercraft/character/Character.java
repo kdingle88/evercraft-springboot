@@ -162,4 +162,8 @@ public class Character {
         this.setLevel(this.xp);
 
     }
+
+    public void addXP(int xp) {
+        this.xp += xp;
+    }
 }
