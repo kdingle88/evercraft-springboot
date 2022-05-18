@@ -7,21 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CharacterTest {
 
     @Test
-    public void testArmor() {
+    public void armorDefaultsToTen() {
         Character character = new Character();
 
         assertEquals(10,character.getArmor());
     }
 
     @Test
-    public void testHitPoints() {
+    public void hitPointsDefaultsToFive() {
         Character character = new Character();
 
         assertEquals(5,character.getHitPoints());
     }
 
     @Test
-    public void charactersFightHit() {
+    public void attackWithRollEqualToArmorHits() {
         Character character1 = new Character();
         Character character2 = new Character();
         int roll = 10;
@@ -31,7 +31,7 @@ public class CharacterTest {
         assertEquals(true, isHit);
     }
     @Test
-    public void testAbilities() {
+    public void abilitiesDefaultToTen() {
         Character character = new Character();
 
         assertEquals(10,character.getStrength());
@@ -43,7 +43,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void testGetModifier() {
+    public void getModifierWithScoreReturnsModifier() {
 
         assertEquals(-5,Character.getModifier(1));
         assertEquals(0,Character.getModifier(10));
@@ -52,7 +52,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void testAddDexterityModifierToArmor() {
+    public void dexterityModifierIncreasesArmor() {
         Character character = new Character();
 
         character.setDexterity(12);
@@ -61,7 +61,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void testAddConstitutionModifierToHP() {
+    public void constitutionModifierIncreasesHP() {
         Character character = new Character();
 
         character.setConstitution(15);
@@ -70,7 +70,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void testStartingHPisAtLeastOne() {
+    public void startingHPisAtLeastOne() {
         Character character = new Character();
 
         character.setConstitution(1);
@@ -79,20 +79,20 @@ public class CharacterTest {
     }
 
     @Test
-    public void testStartingLevel() {
+    public void startingLevelIsOne() {
         Character character = new Character();
 
         assertEquals(1, character.getLevel());
     }
     @Test
-    public void testStartingXP() {
+    public void startingXPIsZero() {
         Character character = new Character();
 
         assertEquals(0, character.getXP());
     }
 
     @Test
-    public void testLevelWith1000XPIs2() {
+    public void setXPWith1000XPIncreasesLevelByOne() {
         Character character = new Character();
 
         character.setXP(1000);
@@ -100,7 +100,7 @@ public class CharacterTest {
         assertEquals(2,character.getLevel());
     }
     @Test
-    public void testLevelWith9000XPIs10() {
+    public void setXPWith9000XPIncreasesNineLevels() {
         Character character = new Character();
 
         character.setXP(9000);
@@ -108,7 +108,7 @@ public class CharacterTest {
         assertEquals(10,character.getLevel());
     }
     @Test
-    public void testHPIncreaseOnLevelUp() {
+    public void hpIncreasesByFiveForEachLevelIncrease() {
         Character character = new Character();
 
         character.setXP(1000);
@@ -117,7 +117,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void testHPIncreaseOnNegativeModifier() {
+    public void hpDoesntIncreaseOnNegativeFiveModifier() {
         Character character = new Character();
 
         character.setConstitution(1);
@@ -128,7 +128,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void addXPIncreasesXP() {
+    public void addXPWith1000IncreasesXPBy1000() {
         Character character = new Character();
 
         character.addXP(1000);
@@ -147,7 +147,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void addLevelIncreasesLevel() {
+    public void addLevelWith1000XPIncreasesLevelByOne() {
         Character character = new Character();
 
         character.addLevel(1000);
@@ -196,6 +196,4 @@ public class CharacterTest {
         assertEquals(15, character.getLevel());
         assertEquals(14000, character.getXP());
     }
-
-
 }

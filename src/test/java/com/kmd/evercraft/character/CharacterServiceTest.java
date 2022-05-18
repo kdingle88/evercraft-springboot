@@ -26,7 +26,7 @@ class CharacterServiceTest {
     CharacterRepository characterRepository;
 
     @Test
-    public void fightCharactersShouldFindCharacters() {
+    public void fightCharactersFindsCharacters() {
         List<Character> characters = generateCharacters();
 
         when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
@@ -39,7 +39,7 @@ class CharacterServiceTest {
     }
 
     @Test
-    public void fightCharactersShouldSaveUpdatedCharacters() {
+    public void fightCharactersSavesUpdatedCharacters() {
         List<Character> characters = generateCharacters();
 
         when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
