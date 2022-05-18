@@ -25,7 +25,7 @@ public class Fighter extends Character {
 
 
     @Override
-    protected void setLevel(int xp) {
+    protected void addLevel(int xp) {
 
         int newLevel = (int) (xp / 1000) + 1;
         int baseHealthMultiplier = (int) (xp / 1000);
