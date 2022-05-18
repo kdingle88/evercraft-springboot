@@ -154,4 +154,48 @@ public class CharacterTest {
 
         assertEquals(2,character.getLevel());
     }
+
+    @Test
+    public void setLevelOverwritesLevelAndXP() {
+        Character character = new Character();
+
+        character.setLevel(10);
+
+        assertEquals(10, character.getLevel());
+        assertEquals(9000, character.getXP());
+    }
+
+    @Test
+    public void setXPOverwritesLevelAndXP() {
+        Character character = new Character();
+
+        character.setXP(10000);
+
+        assertEquals(11, character.getLevel());
+        assertEquals(10000, character.getXP());
+    }
+
+    @Test
+    public void setXPAfterSetLevelOverwritesSetLevel() {
+        Character character = new Character();
+
+        character.setLevel(15);
+        character.setXP(10000);
+
+        assertEquals(11, character.getLevel());
+        assertEquals(10000, character.getXP());
+    }
+
+    @Test
+    public void setLevelAfterSetXPOverwritesSetXP() {
+        Character character = new Character();
+
+        character.setXP(10000);
+        character.setLevel(15);
+
+        assertEquals(15, character.getLevel());
+        assertEquals(14000, character.getXP());
+    }
+
+
 }
