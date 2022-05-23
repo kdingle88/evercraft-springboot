@@ -4,6 +4,7 @@ on: [push]
   push:
     branches:
       - main
+      - classes
 
 jobs:
   build:
