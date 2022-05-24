@@ -28,7 +28,7 @@ public class CharacterService {
 
         List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter);
 
-        if(isCharacterDead(updatedCharacters.get(1))) {
+        if(updatedCharacters.get(1).isCharacterDead()) {
             characterRepository.delete(updatedCharacters.get(1));
             updatedCharacters.remove(1);
         }
@@ -74,7 +74,4 @@ public class CharacterService {
         return naturalRoll + strengthMod + levelMod;
     }
 
-    public boolean isCharacterDead(Character character) {
-        return character.getHitPoints() <= 0;
-    }
 }

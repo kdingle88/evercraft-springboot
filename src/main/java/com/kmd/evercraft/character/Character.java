@@ -187,4 +187,8 @@ public class Character {
         }
         return damage;
     }
+
+    public boolean isCharacterDead() {
+        return getHitPoints() <= 0;
+    }
 }
