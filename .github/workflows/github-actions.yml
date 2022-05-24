@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - run: echo "${{ pwd }}"
       - name: Install Gradle dependencies
         run: |
           ../../gradlew build
