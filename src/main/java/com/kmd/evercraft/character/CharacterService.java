@@ -46,10 +46,13 @@ public class CharacterService {
         int naturalRoll = roller.rollD20();
         int totalRoll = attackingCharacter.getTotalRoll(naturalRoll);
 
-        boolean isHit = attackedCharacter.getArmor() <= totalRoll;
+
+
+        boolean isHit = isHit(attackingCharacter,attackedCharacter, totalRoll);
         boolean isCriticalHit = naturalRoll == 20;
 
         int damage = 0;
+
 
         if(isHit) {
             damage += attackingCharacter.calculateDamage();
@@ -66,6 +69,16 @@ public class CharacterService {
         attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - damage);
 
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
+    }
+
+    private boolean isHit(Character attackingCharacter,Character attackedCharacter, int totalRoll) {
+        int attackedArmor = attackedCharacter.getArmor();
+        if(attackingCharacter instanceof Rogue) {
+            if(attackedCharacter.getDexterity() > 10) {
+                attackedArmor -= Character.getModifier(attackedCharacter.getDexterity());
+            }
+        }
+        return attackedArmor <= totalRoll;
     }
 
 }

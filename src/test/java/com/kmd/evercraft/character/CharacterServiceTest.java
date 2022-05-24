@@ -308,6 +308,42 @@ class CharacterServiceTest {
         assertEquals(2,damagedCharacter.getHitPoints());
     }
 
+    @Test
+    public void attackingRogueIgnoresPositiveDexterityModifierToArmor() throws Exception {
+        List<Character> rogues = generateRogues();
+
+        Character attackingRogue = rogues.get(0);
+        Character attackedRogue = rogues.get(1);
+
+        attackedRogue.setDexterity(12);
+
+        when(roller.rollD20()).thenReturn(10);
+
+        List<Character> updatedCharacters = characterService.fight(attackingRogue, attackedRogue);
+
+        Character damagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(4,damagedCharacter.getHitPoints());
+    }
+
+    @Test
+    public void attackingRogueKeepsNegativeDexterityModifierToArmor() throws Exception {
+        List<Character> rogues = generateRogues();
+
+        Character attackingRogue = rogues.get(0);
+        Character attackedRogue = rogues.get(1);
+
+        attackedRogue.setDexterity(9);
+
+        when(roller.rollD20()).thenReturn(9);
+
+        List<Character> updatedCharacters = characterService.fight(attackingRogue, attackedRogue);
+
+        Character damagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(4,damagedCharacter.getHitPoints());
+    }
+
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud",GOOD);
         Character character2 = new Character(2L, "Barret",NEUTRAL);
