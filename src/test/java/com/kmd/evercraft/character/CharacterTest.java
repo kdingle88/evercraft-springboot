@@ -10,7 +10,7 @@ public class CharacterTest {
     public void armorDefaultsToTen() {
         Character character = new Character();
 
-        assertEquals(9,character.getArmor());
+        assertEquals(10,character.getArmor());
     }
 
     @Test
