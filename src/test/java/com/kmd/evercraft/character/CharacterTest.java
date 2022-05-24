@@ -2,6 +2,7 @@ package com.kmd.evercraft.character;
 
 import org.junit.jupiter.api.Test;
 
+import static com.kmd.evercraft.character.CharacterAlignment.NEUTRAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CharacterTest {
@@ -185,5 +186,25 @@ public class CharacterTest {
 
         assertEquals(15, character.getLevel());
         assertEquals(14000, character.getXP());
+    }
+
+    @Test
+    public void totalRollAddsStrengthModifier() {
+        Character character = new Character(1L,"Jenny",NEUTRAL);
+
+        character.setStrength(12);
+
+        int naturalRoll = 10;
+
+        assertEquals(11,character.getTotalRoll(naturalRoll));
+    }
+
+    @Test
+    public void strengthModifierIncreasesDamage() {
+        Character character = new Character(1L,"Jenny",NEUTRAL);
+
+        character.setStrength(12);
+
+        assertEquals(2,character.calculateDamage());
     }
 }
