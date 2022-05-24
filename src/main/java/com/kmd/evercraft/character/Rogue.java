@@ -14,4 +14,25 @@ public class Rogue extends Character{
     public Rogue(String name, CharacterAlignment alignment) {
         super(name, alignment);
     }
+
+    @Override
+    public int getTotalRoll(int naturalRoll) {
+        int dexMod = getModifier(getDexterity());
+        int levelMod = getLevelMod();
+
+        return naturalRoll + dexMod + levelMod;
+    }
+
+    @Override
+    public int calculateDamage() {
+        int damage = 1;
+        int modifier = getModifier(getDexterity());
+
+        if(modifier > 0) {
+            damage += modifier;
+        }
+        return damage;
+    }
 }
+
+

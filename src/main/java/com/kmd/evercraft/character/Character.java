@@ -188,7 +188,7 @@ public class Character {
         return getHitPoints() <= 0;
     }
 
-    int getTotalRoll(int naturalRoll) {
+    public int getTotalRoll(int naturalRoll) {
         int strengthMod = getModifier(getStrength());
         int levelMod = getLevelMod();
 
