@@ -210,10 +210,7 @@ class CharacterServiceTest {
         attacking.setXP(2000);
 
         doReturn(8).when(characterService).getNaturalRoll();
-
-        System.out.println(attacking.getXP());
-        System.out.println(attacking.getLevel());
-        System.out.println(attacking.getHitPoints());
+        
         List<Character> updatedCharacters = characterService.fight(attacking, attacked);
 
 

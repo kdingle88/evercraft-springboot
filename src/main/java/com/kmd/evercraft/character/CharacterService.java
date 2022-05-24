@@ -42,7 +42,7 @@ public class CharacterService {
         int naturalRoll = getNaturalRoll();
         int totalRoll = attackingCharacter.getTotalRoll(naturalRoll);
 
-        boolean isHit = attackingCharacter.attack(attackedCharacter,totalRoll);
+        boolean isHit = attackedCharacter.getArmor() <= totalRoll;
         boolean isCriticalHit = naturalRoll == 20;
 
         int damage = 0;
@@ -58,9 +58,7 @@ public class CharacterService {
 
         attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - damage);
 
-
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
-
     }
 
     int getNaturalRoll() {

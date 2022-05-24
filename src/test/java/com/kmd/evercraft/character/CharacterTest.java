@@ -21,16 +21,6 @@ public class CharacterTest {
     }
 
     @Test
-    public void attackWithRollEqualToArmorHits() {
-        Character character1 = new Character();
-        Character character2 = new Character();
-        int roll = 10;
-
-        boolean isHit = character1.attack(character2,roll);
-
-        assertEquals(true, isHit);
-    }
-    @Test
     public void abilitiesDefaultToTen() {
         Character character = new Character();
 
