@@ -49,6 +49,7 @@ public class CharacterService {
 
         if(isHit) {
             damage += calculateDamage(attackingCharacter);
+            attackingCharacter.addXP(10);
         }
 
         if(isCriticalHit) {

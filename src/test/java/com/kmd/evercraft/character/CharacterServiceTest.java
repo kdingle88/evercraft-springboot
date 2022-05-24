@@ -223,6 +223,74 @@ class CharacterServiceTest {
 
     }
 
+    @Test
+    public void onHitAttackerGainsTenXP() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        doReturn(11).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
+
+        Character character = updatedCharacters.get(0);
+
+        assertEquals(10,character.getXP());
+    }
+
+    @Test
+    public void onMissAttackerXPStaysTheSame() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        doReturn(9).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
+
+        Character character = updatedCharacters.get(0);
+
+        assertEquals(0,character.getXP());
+    }
+
+    @Test
+    public void attackerCanLevelUpWhenGainingXP() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        attackingCharacter.setXP(990);
+
+        doReturn(11).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
+
+        Character character = updatedCharacters.get(0);
+
+        assertEquals(1000,character.getXP());
+        assertEquals(2,character.getLevel());
+    }
+
+    @Test
+    public void onTwoHitsAttackerXPIncreasesTwenty() {
+        List<Character> characters = generateCharacters();
+
+        Character attackingCharacter = characters.get(0);
+        Character attackedCharacter = characters.get(1);
+
+        doReturn(11).when(characterService).getNaturalRoll();
+
+        List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
+        updatedCharacters = characterService.fight(updatedCharacters.get(0), updatedCharacters.get(1));
+
+        Character character = updatedCharacters.get(0);
+
+        assertEquals(20,character.getXP());
+    }
+
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud",GOOD);
         Character character2 = new Character(2L, "Barret",NEUTRAL);
