@@ -116,6 +116,10 @@ public class Character {
         return wisdom;
     }
 
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
     public int getIntelligence() {
         return intelligence;
     }

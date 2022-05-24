@@ -21,4 +21,22 @@ class MonkTest {
         assertTrue(monk.getHitPoints() == 12);
     }
 
+    @Test
+    public void positiveWisdomModifierIncreasesArmor() {
+        Character monk = new Monk();
+
+        monk.setWisdom(12);
+
+        assertTrue(monk.getArmor() == 11);
+    }
+
+    @Test
+    public void negativeWisdomModifierKeepsArmorTheSame() {
+        Character monk = new Monk();
+
+        monk.setWisdom(9);
+
+        assertTrue(monk.getArmor() == 10);
+    }
+
 }

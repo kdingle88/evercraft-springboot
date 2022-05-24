@@ -1,6 +1,8 @@
 package com.kmd.evercraft.character;
 
 public class Monk extends Character{
+    private int wisdom = 10;
+
     public Monk() {
         super();
 
@@ -19,5 +21,14 @@ public class Monk extends Character{
 
             setHitPoints(getHitPoints() + (6 * baseHealthMultiplier + getModifier(getConstitution())));
         }
+    }
+
+    @Override
+    public void setWisdom(int wisdom) {
+        if(getModifier(wisdom) > 0) {
+            setArmor(getArmor() + getModifier(wisdom));
+        }
+
+        this.wisdom = wisdom;
     }
 }
