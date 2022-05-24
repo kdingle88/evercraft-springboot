@@ -19,10 +19,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-        - name: Install Gradle dependencies
-          run: |
-            ./gradlew build
-        - name: Test with gradle Junit
-           run: |
-             ./gradlew test
+      - name: Install Gradle dependencies
+        run: |
+          ./gradlew build
+      - name: Test with gradle Junit
+        run: |
+         ./gradlew test
 
