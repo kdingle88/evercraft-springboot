@@ -1,5 +1,6 @@
 package com.kmd.evercraft.character;
 
+import com.kmd.evercraft.DiceRoller;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,9 @@ class CharacterServiceTest {
 
     @Mock
     CharacterRepository characterRepository;
+
+    @Mock
+    DiceRoller roller;
 
     @Test
     public void fightCharactersFindsCharacters() {
@@ -72,7 +76,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(11).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(11);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -88,7 +92,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(10).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(10);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -105,7 +109,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(9).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(9);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -122,7 +126,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(20).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(20);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -155,7 +159,7 @@ class CharacterServiceTest {
         attackingCharacter.setStrength(1);
         attackedCharacter.setArmor(21);
 
-        doReturn(20).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(20);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -173,7 +177,7 @@ class CharacterServiceTest {
 
         attackingCharacter.setXP(3000);
 
-        doReturn(9).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(9);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -191,7 +195,7 @@ class CharacterServiceTest {
 
         attackingCharacter.setXP(2000);
 
-        doReturn(8).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(8);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -209,7 +213,7 @@ class CharacterServiceTest {
 
         attacking.setXP(2000);
 
-        doReturn(8).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(8);
 
         List<Character> updatedCharacters = characterService.fight(attacking, attacked);
 
@@ -227,7 +231,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(11).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(11);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -243,7 +247,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(9).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(9);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -261,7 +265,7 @@ class CharacterServiceTest {
 
         attackingCharacter.setXP(990);
 
-        doReturn(11).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(11);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
 
@@ -278,7 +282,7 @@ class CharacterServiceTest {
         Character attackingCharacter = characters.get(0);
         Character attackedCharacter = characters.get(1);
 
-        doReturn(11).when(characterService).getNaturalRoll();
+        when(roller.rollD20()).thenReturn(11);
 
         List<Character> updatedCharacters = characterService.fight(attackingCharacter, attackedCharacter);
         updatedCharacters = characterService.fight(updatedCharacters.get(0), updatedCharacters.get(1));

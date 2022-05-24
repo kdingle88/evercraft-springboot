@@ -1,5 +1,6 @@
 package com.kmd.evercraft.character;
 
+import com.kmd.evercraft.DiceRoller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class CharacterService {
 
     @Autowired
     CharacterRepository characterRepository;
+
+
+    DiceRoller roller = new DiceRoller();
 
     public Character addCharacter(Character character) {
 
@@ -39,7 +43,7 @@ public class CharacterService {
 
     public List<Character> fight(Character attackingCharacter, Character attackedCharacter) {
 
-        int naturalRoll = getNaturalRoll();
+        int naturalRoll = roller.rollD20();
         int totalRoll = attackingCharacter.getTotalRoll(naturalRoll);
 
         boolean isHit = attackedCharacter.getArmor() <= totalRoll;
@@ -59,10 +63,6 @@ public class CharacterService {
         attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - damage);
 
         return new ArrayList<>(Arrays.asList(attackingCharacter,attackedCharacter));
-    }
-
-    int getNaturalRoll() {
-        return (int) (Math.random() * (20)) + 1;
     }
 
 }

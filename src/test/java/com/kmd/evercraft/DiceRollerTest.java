@@ -6,10 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DiceRollerTest {
 
+    DiceRoller roller = new DiceRoller();
+
     @Test
     public void rollD20() {
-        assertTrue(DiceRoller.rollD20() <= 20);
-        assertTrue(DiceRoller.rollD20() > 0);
+        assertTrue(roller.rollD20() <= 20);
+        assertTrue(roller.rollD20() > 0);
     }
 
 }
