@@ -40,7 +40,7 @@ public class CharacterService {
     public List<Character> fight(Character attackingCharacter, Character attackedCharacter) {
 
         int naturalRoll = getNaturalRoll();
-        int totalRoll = getTotalRoll(attackingCharacter, naturalRoll);
+        int totalRoll = attackingCharacter.getTotalRoll(naturalRoll);
 
         boolean isHit = attackingCharacter.attack(attackedCharacter,totalRoll);
         boolean isCriticalHit = naturalRoll == 20;
@@ -65,13 +65,6 @@ public class CharacterService {
 
     int getNaturalRoll() {
         return (int) (Math.random() * (20)) + 1;
-    }
-
-    int getTotalRoll(Character attackingCharacter, int naturalRoll) {
-        int strengthMod = Character.getModifier(attackingCharacter.getStrength());
-        int levelMod = attackingCharacter.getLevelMod();
-
-        return naturalRoll + strengthMod + levelMod;
     }
 
 }

@@ -191,4 +191,11 @@ public class Character {
     public boolean isCharacterDead() {
         return getHitPoints() <= 0;
     }
+
+    int getTotalRoll(int naturalRoll) {
+        int strengthMod = getModifier(getStrength());
+        int levelMod = getLevelMod();
+
+        return naturalRoll + strengthMod + levelMod;
+    }
 }

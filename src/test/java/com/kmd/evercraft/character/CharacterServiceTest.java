@@ -140,7 +140,7 @@ class CharacterServiceTest {
         attackingCharacter.setStrength(12);
 
         int roll = 9;
-        int rollWithModifer = characterService.getTotalRoll(attackingCharacter,roll);
+        int rollWithModifer = attackingCharacter.getTotalRoll(roll);
 
         assertEquals(10,rollWithModifer);
     }
