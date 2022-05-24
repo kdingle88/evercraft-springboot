@@ -2,8 +2,6 @@ package com.kmd.evercraft.character;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 
 import static com.kmd.evercraft.character.CharacterAlignment.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,9 +38,9 @@ class CharacterControllerTest {
         Character character1 = new Character(1L,"Bob",EVIL);
         Character character2 = new Character(2L,"Jen",NEUTRAL);
 
-        characterController.fightCharacters(List.of(character1,character2));
+        characterController.fightCharacters(1L,2L);
 
-        verify(characterService,times(1)).fightCharacters(eq(character1),eq(character2));
+        verify(characterService,times(1)).fightCharacters(eq(1L),eq(2L));
 
     }
 

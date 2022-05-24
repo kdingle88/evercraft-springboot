@@ -54,7 +54,7 @@ public class CharacterControllerIntTest {
         characterRepository.save(character1);
         characterRepository.save(character2);
 
-        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight");
+        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight?" + "attackingCharacterID=" + character1.getId() + "&attackedCharacterID=" + character2.getId());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 

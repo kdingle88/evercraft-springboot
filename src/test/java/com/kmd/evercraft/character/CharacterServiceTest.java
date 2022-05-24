@@ -32,7 +32,7 @@ class CharacterServiceTest {
         when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
         when(characterRepository.findById(2L)).thenReturn(Optional.of(characters.get(1)));
 
-        characterService.fightCharacters(characters.get(0), characters.get(1));
+        characterService.fightCharacters(1L, 2L);
 
         verify(characterRepository,times(1)).findById(eq(characters.get(0).getId()));
         verify(characterRepository, times(1)).findById(eq(characters.get(1).getId()));
@@ -45,7 +45,7 @@ class CharacterServiceTest {
         when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
         when(characterRepository.findById(2L)).thenReturn(Optional.of(characters.get(1)));
 
-        characterService.fightCharacters(characters.get(0), characters.get(1));
+        characterService.fightCharacters(1L, 2L);
 
         verify(characterRepository,times(1)).save(eq(characters.get(0)));
         verify(characterRepository, times(1)).save(eq(characters.get(1)));
@@ -57,7 +57,7 @@ class CharacterServiceTest {
         when(characterRepository.findById(1L)).thenReturn(Optional.of(characters.get(0)));
         when(characterRepository.findById(3L)).thenReturn(Optional.of(characters.get(2)));
 
-        characterService.fightCharacters(characters.get(0), characters.get(2));
+        characterService.fightCharacters(1L, 3L);
 
         verify(characterRepository,times(1)).delete(eq(characters.get(2)));
 

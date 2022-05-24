@@ -19,12 +19,12 @@ public class CharacterService {
 
     }
 
-    public void fightCharacters(Character character1, Character character2) {
-        Character attackingCharacter = characterRepository.findById(character1.getId())
-                .orElseThrow(() -> new IllegalStateException("Character with id " + character1.getId() + " does not exist." ));
+    public void fightCharacters(Long firstCharacterID, Long secondCharacterID) {
+        Character attackingCharacter = characterRepository.findById(firstCharacterID)
+                .orElseThrow(() -> new IllegalStateException("Character with id " + firstCharacterID + " does not exist." ));
 
-        Character attackedCharacter = characterRepository.findById(character2.getId())
-                .orElseThrow(() -> new IllegalStateException("Character with id " + character2.getId() + " does not exist." ));
+        Character attackedCharacter = characterRepository.findById(secondCharacterID)
+                .orElseThrow(() -> new IllegalStateException("Character with id " + secondCharacterID + " does not exist." ));
 
         List<Character> updatedCharacters = fight(attackingCharacter,attackedCharacter);
 

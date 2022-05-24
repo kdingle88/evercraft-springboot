@@ -3,8 +3,6 @@ package com.kmd.evercraft.character;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(path = "api/v1/characters")
 public class CharacterController {
@@ -23,11 +21,9 @@ public class CharacterController {
     }
 
     @PutMapping(path = "/fight")
-    public void fightCharacters(@RequestBody List<Character> fightingCharacters) {
-        Character character1 = fightingCharacters.get(0);
-        Character character2 = fightingCharacters.get(1);
+    public void fightCharacters(@RequestParam Long attackingCharacterID, @RequestParam Long attackedCharacterID) {
 
-        characterService.fightCharacters(character1,character2);
+        characterService.fightCharacters(attackingCharacterID,attackedCharacterID);
     }
 
 }
