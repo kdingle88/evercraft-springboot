@@ -37,4 +37,8 @@ public class Fighter extends Character {
             setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + getModifier(getConstitution())));
         }
     }
+    @Override
+    public int getLevelMod() {
+        return this.level;
+    }
 }

@@ -173,4 +173,8 @@ public class Character {
             this.level = newLevel;
         }
     }
+
+    public int getLevelMod() {
+        return this.level / 2;
+    }
 }
