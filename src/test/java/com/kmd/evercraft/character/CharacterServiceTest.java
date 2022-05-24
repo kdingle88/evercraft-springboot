@@ -210,7 +210,7 @@ class CharacterServiceTest {
         attacking.setXP(2000);
 
         doReturn(8).when(characterService).getNaturalRoll();
-        
+
         List<Character> updatedCharacters = characterService.fight(attacking, attacked);
 
 
