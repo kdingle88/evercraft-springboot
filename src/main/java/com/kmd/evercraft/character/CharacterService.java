@@ -57,6 +57,9 @@ public class CharacterService {
         }
 
         if(isCriticalHit) {
+            if(attackingCharacter instanceof Rogue) {
+                damage += attackingCharacter.calculateDamage();
+            }
             damage += attackingCharacter.calculateDamage();
         }
 

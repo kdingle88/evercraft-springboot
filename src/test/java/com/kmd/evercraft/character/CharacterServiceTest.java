@@ -292,6 +292,22 @@ class CharacterServiceTest {
         assertEquals(20,character.getXP());
     }
 
+    @Test
+    public void fightCriticalRollWithRogueAttackerLowersAttackedHpByTriple() throws Exception {
+        List<Character> rogues = generateRogues();
+
+        Character attackingRogue = rogues.get(0);
+        Character attackedRogue = rogues.get(1);
+
+        when(roller.rollD20()).thenReturn(20);
+
+        List<Character> updatedCharacters = characterService.fight(attackingRogue, attackedRogue);
+
+        Character damagedCharacter = updatedCharacters.get(1);
+
+        assertEquals(2,damagedCharacter.getHitPoints());
+    }
+
     public List<Character> generateCharacters() {
         Character character1 = new Character(1L,"Cloud",GOOD);
         Character character2 = new Character(2L, "Barret",NEUTRAL);
@@ -307,6 +323,12 @@ class CharacterServiceTest {
         Fighter fightingCharacter2 = new Fighter(12L,"Blaze",NEUTRAL);
 
         return List.of(fightingCharacter1,fightingCharacter2);
+    }
 
+    public List<Character> generateRogues() throws Exception {
+        Rogue rogueCharacter1 = new Rogue(21L,"Lily",NEUTRAL);
+        Rogue rogueCharacter2 = new Rogue(22L,"John",EVIL);
+
+        return List.of(rogueCharacter1,rogueCharacter2);
     }
 }
