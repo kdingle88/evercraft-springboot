@@ -177,4 +177,14 @@ public class Character {
     public int getLevelMod() {
         return this.level / 2;
     }
+
+    public int calculateDamage() {
+        int damage = 1;
+        int modifier = getModifier(getStrength());
+
+        if(modifier > 0) {
+            damage += modifier;
+        }
+        return damage;
+    }
 }

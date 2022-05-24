@@ -48,12 +48,12 @@ public class CharacterService {
         int damage = 0;
 
         if(isHit) {
-            damage += calculateDamage(attackingCharacter);
+            damage += attackingCharacter.calculateDamage();
             attackingCharacter.addXP(10);
         }
 
         if(isCriticalHit) {
-            damage += calculateDamage(attackingCharacter);
+            damage += attackingCharacter.calculateDamage();
         }
 
         attackedCharacter.setHitPoints(attackedCharacter.getHitPoints() - damage);
@@ -72,16 +72,6 @@ public class CharacterService {
         int levelMod = attackingCharacter.getLevelMod();
 
         return naturalRoll + strengthMod + levelMod;
-    }
-
-    private int calculateDamage(Character attackingCharacter) {
-        int damage = 1;
-        int modifier = Character.getModifier(attackingCharacter.getStrength());
-
-        if(modifier > 0) {
-            damage += modifier;
-        }
-        return damage;
     }
 
     public boolean isCharacterDead(Character character) {
