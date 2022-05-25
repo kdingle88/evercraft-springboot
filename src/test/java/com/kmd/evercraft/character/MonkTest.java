@@ -36,7 +36,7 @@ class MonkTest {
 
         monk.setWisdom(9);
 
-        assertTrue(monk.getArmor() == 11);
+        assertTrue(monk.getArmor() == 10);
     }
 
 }
