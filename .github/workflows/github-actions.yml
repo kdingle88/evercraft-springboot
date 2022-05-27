@@ -33,4 +33,5 @@ jobs:
       - name: Publish Test Report
         uses: phoenix-actions/test-reporting@v8
         with:
-          name: '**/build/test-results/test/TEST-*.xml'
+          name: Test Report
+          path: '**/build/test-results/test/TEST-*.xml'
