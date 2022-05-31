@@ -36,3 +36,8 @@ jobs:
           name: Test Report
           path: '**/build/test-results/test/TEST-*.xml'
           reporter: java-junit 
+      - name: JaCoCo Report
+        uses: Madrapps/jacoco-report@v1.2
+        with:
+          paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+          token: ${{ github.token }}
