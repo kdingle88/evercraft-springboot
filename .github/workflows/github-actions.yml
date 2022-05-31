@@ -36,6 +36,10 @@ jobs:
           name: Test Report
           path: '**/build/test-results/test/TEST-*.xml'
           reporter: java-junit 
+      - name: Run Coverage
+        run: |
+          chmod +x gradlew
+          ./gradlew testCoverage
       - name: JaCoCo Report
         uses: Madrapps/jacoco-report@v1.2
         with:
