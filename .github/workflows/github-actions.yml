@@ -33,7 +33,12 @@ jobs:
       - name: Run Coverage
         run: |
           chmod +x gradlew
-          ./gradlew jacocoTestReport
+          ./gradlew jacocoTestReport 
+      - name: Upload Report
+        uses: 'actions/upload-artifact@v2'
+        with:
+          name: report.xml
+          path: ${{ github.workspace }}/build/jacoco/test/jacocoTestReport.xml
       - name: JaCoCo Report
         uses: Madrapps/jacoco-report@v1.2
         with:
@@ -43,6 +48,6 @@ jobs:
         uses: phoenix-actions/test-reporting@v8
         with:
           name: Test Report
-          path: '**/build/test-results/test/TEST-*.xml, ${{ github.workspace }}/build/jacoco/test/jacocoTestReport.xml'
+          path: '**/build/test-results/test/TEST-*.xml'
           reporter: java-junit 
           
