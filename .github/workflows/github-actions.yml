@@ -41,7 +41,7 @@ jobs:
         id: jacoco-report
         uses: Madrapps/jacoco-report@v1.2
         with:
-          paths: ${{ github.workspace }}/build/jacoco/test/html/index.html
+          paths: ${{ github.workspace }}/build/reports/jacoco/Html/index.html
           token: ${{ github.token }}
 
       - name: Generate JaCoCo Badge
@@ -67,7 +67,7 @@ jobs:
         uses: 'actions/upload-artifact@v2'
         with:
           name: test-coverage-report.html
-          path: ${{ github.workspace }}/build/jacoco/test/html/index.html
+          path: ${{ github.workspace }}/build/reports/jacoco/Html/index.html
 
       - name: Publish Test Report
         uses: phoenix-actions/test-reporting@v8
