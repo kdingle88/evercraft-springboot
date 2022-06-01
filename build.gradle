@@ -29,7 +29,6 @@ tasks.named('test') {
 
 jacoco {
 	toolVersion = "0.8.7"
-	reportsDir = file("$buildDir/jacoco")
 }
 
 test {
@@ -40,9 +39,10 @@ jacocoTestReport {
 	sourceSets sourceSets.main
 	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 	reports {
-		xml.enabled false
+		xml.enabled true
 		csv.enabled true
 		html.destination file("${buildDir}/reports/jacoco/Html")
 		csv.destination file("${buildDir}/reports/jacoco/jacoco.csv")
+		xml.destination file("${buildDir}/reports/jacoco/jacoco.xml")
 	}
 }
