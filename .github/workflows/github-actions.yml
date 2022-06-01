@@ -38,14 +38,14 @@ jobs:
           
           
       - name: JaCoCo Report
-        id: jacoco
+        id: jacoco-report
         uses: Madrapps/jacoco-report@v1.2
         with:
           paths: ${{ github.workspace }}/build/jacoco/test/html/index.html
           token: ${{ github.token }}
 
       - name: Generate JaCoCo Badge
-        id: jacoco
+        id: jacoco-badge
         uses: cicirello/jacoco-badge-generator@v2.0.1
 
       - name: Log coverage percentage
