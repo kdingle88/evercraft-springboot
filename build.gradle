@@ -38,6 +38,7 @@ jacocoTestReport {
 	dependsOn test
 	sourceSets sourceSets.main
 	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+	setIgnoreFailures(true)
 	reports {
 		xml.enabled true
 		csv.enabled true
