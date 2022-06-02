@@ -1,0 +1,66 @@
+name: Evercraft Actions
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+      - classes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [17]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
+        with:
+          arguments: build
+      - name: Test with gradle Junit
+        run: |
+          ./gradlew test
+
+      - name: Run Coverage
+        run: |
+          chmod +x gradlew
+          ./gradlew jacocoTestReport 
+
+
+      - name: JaCoCo Report
+        id: jacoco-report
+        uses: Madrapps/jacoco-report@v1.2
+        with:
+          paths: ${{ github.workspace }}/build/reports/jacoco/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate JaCoCo Badge
+        id: jacoco-badge
+        uses: cicirello/jacoco-badge-generator@v2.6.1
+        with:
+          jacoco-csv-file: build/reports/jacoco/jacoco.csv
+          generate-branches-badge: true
+          generate-summary: true
+
+      - name: Upload Report
+        uses: 'actions/upload-artifact@v2'
+        with:
+          name: test-coverage-report
+          path: ${{ github.workspace }}/build/reports/jacoco/Html
+
+      - name: Publish Test Report
+        uses: phoenix-actions/test-reporting@v8
+        with:
+          name: Test Report
+          path: '**/build/test-results/test/TEST-*.xml'
+          reporter: java-junit
