@@ -3,9 +3,6 @@ on:
   workflow_dispatch:
 
   push:
-    branches:
-      - main
-      - classes
 
 jobs:
   build:
@@ -23,21 +20,25 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
           arguments: build
       - name: Test with gradle Junit
+        if: always()
         run: |
           ./gradlew test
 
       - name: Run Coverage
+        if: always()
         run: |
           chmod +x gradlew
           ./gradlew jacocoTestReport 
 
 
       - name: JaCoCo Report
+        if: always()
         id: jacoco-report
         uses: Madrapps/jacoco-report@v1.2
         with:
@@ -45,6 +46,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate JaCoCo Badge
+        if: always()
         id: jacoco-badge
         uses: cicirello/jacoco-badge-generator@v2.6.1
         with:
@@ -53,12 +55,14 @@ jobs:
           generate-summary: true
 
       - name: Upload Report
+        if: always()
         uses: 'actions/upload-artifact@v2'
         with:
           name: test-coverage-report
           path: ${{ github.workspace }}/build/reports/jacoco/Html
 
       - name: Publish Test Report
+        if: always()
         uses: phoenix-actions/test-reporting@v8
         with:
           name: Test Report
