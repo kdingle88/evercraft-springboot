@@ -54,15 +54,22 @@ jobs:
           generate-branches-badge: true
           generate-summary: true
 
+      - name: PMD
+        uses: pmd/pmd-github-action@v1.2.1
+
+      - name: Upload PMD Report
+        if: failure()
+        uses: 'actions/upload-artifact@v2'
+        with:
+          name: pmd-static-analysis-report
+          path: ${{ github.workspace }}/build/reports/pmd/main.html
+
       - name: Upload Report
         if: always()
         uses: 'actions/upload-artifact@v2'
         with:
           name: test-coverage-report
           path: ${{ github.workspace }}/build/reports/jacoco/Html
-
-      - name: PMD
-        uses: pmd/pmd-github-action@v1.2.1
 
       - name: Publish Test Report
         if: always()
