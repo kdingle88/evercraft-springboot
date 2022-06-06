@@ -61,6 +61,9 @@ jobs:
           name: test-coverage-report
           path: ${{ github.workspace }}/build/reports/jacoco/Html
 
+      - name: PMD
+        uses: pmd/pmd-github-action@v1.2.1
+
       - name: Publish Test Report
         if: always()
         uses: phoenix-actions/test-reporting@v8
@@ -68,3 +71,4 @@ jobs:
           name: Test Report
           path: '**/build/test-results/test/TEST-*.xml'
           reporter: java-junit
+
