@@ -58,7 +58,6 @@ jobs:
         uses: pmd/pmd-github-action@v1.2.1
 
       - name: Upload PMD Report
-        if: failure()
         uses: 'actions/upload-artifact@v2'
         with:
           name: pmd-static-analysis-report
