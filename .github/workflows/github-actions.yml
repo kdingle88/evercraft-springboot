@@ -36,6 +36,10 @@ jobs:
           chmod +x gradlew
           ./gradlew jacocoTestReport 
 
+      - name: Run Mutation Test
+        if: always()
+        run: |
+          ./gradlew pitest
 
       - name: JaCoCo Report
         if: always()
@@ -59,12 +63,12 @@ jobs:
         with:
           rulesets: ./pmd.xml
 
-      - name: Mutation Annotation Report
-        uses: johanholmerin/mutation-report-action@0.2.0
-        if: ${{ always() }} # Upload even if tests don't pass testing threshold
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          "reporters": "html"
+#      - name: Mutation Annotation Report
+#        uses: johanholmerin/mutation-report-action@0.2.0
+#        if: ${{ always() }} # Upload even if tests don't pass testing threshold
+#        with:
+#          repo-token: ${{ secrets.GITHUB_TOKEN }}
+#          "reporters": "html"
 
       - name: Upload PMD Report
         if: failure()
