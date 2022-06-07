@@ -63,6 +63,7 @@ jobs:
         with:
           name: pmd-static-analysis-report
           path: ${{ github.workspace }}/build/reports/pmd/main.html
+          sourcePath: ./pmd.xml
 
       - name: Upload Report
         if: always()
