@@ -24,8 +24,6 @@
         </properties>
     </rule>
 
-    <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
-
     <rule ref="category/java/design.xml" >
         <exclude name="DataClass"/>
         <exclude name="LawOfDemeter"/>
@@ -35,7 +33,6 @@
         <exclude name="AvoidThrowingRawExceptionTypes"/>
         <exclude name="UseUtilityClass"/>
         <exclude name="TooManyMethods"/>
-        <exclude name="UnnecessaryImport"/>
     </rule>
 
     <rule ref="category/java/multithreading.xml" />
