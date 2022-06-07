@@ -88,7 +88,7 @@ jobs:
         if: always()
         uses: 'actions/upload-artifact@v2'
         with:
-          name: test-coverage-report
+          name: mutation-test-report
           path: ${{ github.workspace }}/build/reports/pitest/**/index.html
 
       - name: Publish Test Report
