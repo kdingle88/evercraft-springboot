@@ -56,13 +56,15 @@ jobs:
 
       - name: PMD
         uses: pmd/pmd-github-action@v1.2.1
+        with:
+          rulesets: ./pmd.xml
 
       - name: Upload PMD Report
+        if: failure()
         uses: 'actions/upload-artifact@v2'
         with:
           name: pmd-static-analysis-report
           path: ${{ github.workspace }}/build/reports/pmd/main.html
-          rulesets: ./pmd.xml
 
       - name: Upload Report
         if: always()
