@@ -55,7 +55,6 @@ jobs:
           generate-summary: true
 
       - name: PMD
-        if: failure()
         uses: pmd/pmd-github-action@v1.2.1
         with:
           rulesets: ./pmd.xml
