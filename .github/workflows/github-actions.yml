@@ -64,7 +64,7 @@ jobs:
         if: ${{ always() }} # Upload even if tests don't pass testing threshold
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          "reporters": ["json"]
+          "reporters": "html"
 
       - name: Upload PMD Report
         if: failure()
