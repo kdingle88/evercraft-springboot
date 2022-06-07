@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'jacoco'
 	id 'pmd'
+	id 'info.solidsoft.pitest' version '1.7.4'
 }
 
 group = 'com.kmd'
@@ -35,6 +36,10 @@ jacoco {
 pmd {
 	ruleSetFiles = files("pmd.xml")
 	ruleSets = []
+}
+
+pitest {
+	junit5PluginVersion = '0.15'
 }
 
 test {
