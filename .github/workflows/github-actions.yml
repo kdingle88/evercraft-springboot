@@ -89,7 +89,7 @@ jobs:
         uses: 'actions/upload-artifact@v2'
         with:
           name: mutation-test-report
-          path: ${{ github.workspace }}/build/reports/pitest/**/index.html
+          path: ${{ github.workspace }}/build/reports/pitest/**
 
       - name: Publish Test Report
         if: always()
