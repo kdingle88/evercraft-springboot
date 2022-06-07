@@ -23,7 +23,7 @@ public class Character {
     private int intelligence = 10;
     private int charisma = 10;
     protected int level = 1;
-    private int xp = 0;
+    private int xp;
 
 
     public Character() {

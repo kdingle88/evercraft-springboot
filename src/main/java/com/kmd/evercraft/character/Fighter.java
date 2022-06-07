@@ -1,7 +1,5 @@
 package com.kmd.evercraft.character;
 
-import com.kmd.evercraft.character.Character;
-
 public class Fighter extends Character {
 
     public Fighter() {

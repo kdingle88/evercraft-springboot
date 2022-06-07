@@ -35,9 +35,6 @@ class CharacterControllerTest {
 
         CharacterController characterController = new CharacterController(characterService);
 
-        Character character1 = new Character(1L,"Bob",EVIL);
-        Character character2 = new Character(2L,"Jen",NEUTRAL);
-
         characterController.fightCharacters(1L,2L);
 
         verify(characterService,times(1)).fightCharacters(eq(1L),eq(2L));
