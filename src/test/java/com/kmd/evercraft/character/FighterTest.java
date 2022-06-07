@@ -2,7 +2,7 @@ package com.kmd.evercraft.character;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FighterTest {
 
@@ -10,7 +10,7 @@ class FighterTest {
     public void fighterStartsWithTenHP() {
         Character fighter = new Fighter();
 
-        assertTrue(fighter.getHitPoints() == 10);
+        assertEquals(10,fighter.getHitPoints());
     }
 
     @Test
@@ -19,7 +19,7 @@ class FighterTest {
 
         fighter.setXP(1000);
 
-        assertTrue(fighter.getHitPoints() == 20);
+        assertEquals(20,fighter.getHitPoints());
     }
 
 }

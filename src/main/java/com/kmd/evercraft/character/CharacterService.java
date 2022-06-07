@@ -73,10 +73,9 @@ public class CharacterService {
 
     private boolean isHit(Character attackingCharacter,Character attackedCharacter, int totalRoll) {
         int attackedArmor = attackedCharacter.getArmor();
-        if(attackingCharacter instanceof Rogue) {
-            if(attackedCharacter.getDexterity() > 10) {
-                attackedArmor -= Character.getModifier(attackedCharacter.getDexterity());
-            }
+
+        if(attackingCharacter instanceof Rogue && attackedCharacter.getDexterity() > 10) {
+            attackedArmor -= Character.getModifier(attackedCharacter.getDexterity());
         }
         return attackedArmor <= totalRoll;
     }

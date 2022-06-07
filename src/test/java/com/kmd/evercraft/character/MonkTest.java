@@ -9,7 +9,7 @@ class MonkTest {
     public void monkStartsWithSixHP() {
         Character monk = new Monk();
 
-        assertTrue(monk.getHitPoints() == 6);
+        assertEquals(6,monk.getHitPoints());
     }
 
     @Test
@@ -18,7 +18,7 @@ class MonkTest {
 
         monk.setXP(1000);
 
-        assertTrue(monk.getHitPoints() == 12);
+        assertEquals(12,monk.getHitPoints());
     }
 
     @Test
@@ -27,7 +27,7 @@ class MonkTest {
 
         monk.setWisdom(12);
 
-        assertTrue(monk.getArmor() == 11);
+        assertEquals(11,monk.getArmor());
     }
 
     @Test
@@ -36,7 +36,6 @@ class MonkTest {
 
         monk.setWisdom(9);
 
-        assertTrue(monk.getArmor() == 10);
+        assertEquals(10,monk.getArmor());
     }
-
 }
