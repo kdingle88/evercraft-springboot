@@ -1,6 +1,6 @@
 package com.kmd.evercraft.character;
 
-public enum CharacterAlignment {
+public enum AdventurerAlignment {
     GOOD,
     EVIL,
     NEUTRAL

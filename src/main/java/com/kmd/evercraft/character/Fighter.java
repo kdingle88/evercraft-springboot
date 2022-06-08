@@ -1,6 +1,6 @@
 package com.kmd.evercraft.character;
 
-public class Fighter extends Character {
+public class Fighter extends Adventurer {
 
     public Fighter() {
         super();
@@ -9,13 +9,13 @@ public class Fighter extends Character {
 
     }
 
-    public Fighter(Long id, String name, CharacterAlignment alignment) {
+    public Fighter(Long id, String name, AdventurerAlignment alignment) {
         super(id, name, alignment);
 
         this.setHitPoints(10);
     }
 
-    public Fighter(String name, CharacterAlignment alignment) {
+    public Fighter(String name, AdventurerAlignment alignment) {
         super(name, alignment);
 
         this.setHitPoints(10);

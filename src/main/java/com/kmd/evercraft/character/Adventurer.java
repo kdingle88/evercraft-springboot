@@ -3,13 +3,13 @@ package com.kmd.evercraft.character;
 import javax.persistence.*;
 
 @Entity
-public class Character {
+public class Adventurer {
     @SequenceGenerator(name = "character_sequence",sequenceName = "character_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "character_sequence")
     @Id
     private Long id;
     private String name;
-    private CharacterAlignment alignment;
+    private AdventurerAlignment alignment;
 
     private int armor = 10;
 
@@ -26,26 +26,22 @@ public class Character {
     private int xp;
 
 
-    public Character() {
+    public Adventurer() {
     }
 
-    public Character(Long id, String name, CharacterAlignment alignment) {
+    public Adventurer(Long id, String name, AdventurerAlignment alignment) {
         this.id = id;
         this.name = name;
         this.alignment = alignment;
     }
 
-    public Character(String name, CharacterAlignment alignment) {
+    public Adventurer(String name, AdventurerAlignment alignment) {
         this.name = name;
         this.alignment = alignment;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -56,11 +52,11 @@ public class Character {
         this.name = name;
     }
 
-    public CharacterAlignment getAlignment() {
+    public AdventurerAlignment getAlignment() {
         return alignment;
     }
 
-    public void setAlignment(CharacterAlignment alignment) {
+    public void setAlignment(AdventurerAlignment alignment) {
         this.alignment = alignment;
     }
 

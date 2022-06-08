@@ -1,6 +1,6 @@
 package com.kmd.evercraft.character;
 
-public class Monk extends Character{
+public class Monk extends Adventurer {
     private int wisdom = 10;
 
     public Monk() {

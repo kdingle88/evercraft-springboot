@@ -12,12 +12,12 @@ import org.springframework.http.*;
 import java.net.URI;
 import java.util.List;
 
-import static com.kmd.evercraft.character.CharacterAlignment.GOOD;
+import static com.kmd.evercraft.character.AdventurerAlignment.GOOD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CharacterControllerIntTest {
+public class AdventurerControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -26,19 +26,17 @@ public class CharacterControllerIntTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    CharacterRepository characterRepository;
+    AdventurerRepository adventurerRepository;
 
     @Test
     public void createCharacter() throws Exception {
 
-        Character character = new Character(1L,"Cloud",GOOD);
+        Adventurer adventurer = new Adventurer(1L,"Cloud",GOOD);
 
-        ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/api/v1/characters", character, String.class);
-
+        ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/api/v1/characters", adventurer, String.class);
         JSONObject json = new JSONObject(response.getBody());
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("1",json.getString("id"));
         assertEquals("Cloud",json.getString("name"));
         assertEquals("GOOD",json.getString("alignment"));
@@ -48,20 +46,16 @@ public class CharacterControllerIntTest {
 
     @Test
     public void charactersCanFight() throws Exception {
-        Character character1 = new Character(1L,"John",GOOD);
-        Character character2 = new Character(2L, "Kevin", GOOD);
+        Adventurer adventurer1 = new Adventurer(1L,"John",GOOD);
+        Adventurer adventurer2 = new Adventurer(2L, "Kevin", GOOD);
+        adventurerRepository.save(adventurer1);
+        adventurerRepository.save(adventurer2);
 
-        characterRepository.save(character1);
-        characterRepository.save(character2);
-
-        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight?" + "attackingCharacterID=" + character1.getId() + "&attackedCharacterID=" + character2.getId());
+        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight?" + "attackingCharacterID=" + adventurer1.getId() + "&attackedCharacterID=" + adventurer2.getId());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<List<Character>> fightingCharactersRequest = new HttpEntity<>(List.of(character1, character2), headers);
-
-
-        ResponseEntity<List<Character>> responseEntity = this.restTemplate.exchange(
+        HttpEntity<List<Adventurer>> fightingCharactersRequest = new HttpEntity<>(List.of(adventurer1, adventurer2), headers);
+        ResponseEntity<List<Adventurer>> responseEntity = this.restTemplate.exchange(
                 uri,
                 HttpMethod.PUT,
                 fightingCharactersRequest,

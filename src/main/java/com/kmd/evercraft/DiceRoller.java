@@ -1,7 +1,11 @@
 package com.kmd.evercraft;
 
+import java.util.Random;
+
 public class DiceRoller {
     public int rollD20() {
-        return (int) (Math.random() * (20)) + 1;
+        Random random = new Random();
+
+        return random.nextInt(1,21);
     }
 }
