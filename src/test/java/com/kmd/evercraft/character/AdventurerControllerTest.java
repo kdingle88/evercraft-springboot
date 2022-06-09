@@ -3,6 +3,9 @@ package com.kmd.evercraft.character;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.kmd.evercraft.character.AdventurerAlignment.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,7 +34,12 @@ class AdventurerControllerTest {
         AdventurerService adventurerService = mock(AdventurerService.class);
         AdventurerController adventurerController = new AdventurerController(adventurerService);
 
-        adventurerController.fightCharacters(1L,2L);
+        ArrayList<Long> characterIds = new ArrayList<>();
+
+        characterIds.add(1L);
+        characterIds.add(2L);
+
+        adventurerController.fightCharacters(characterIds);
 
         verify(adventurerService,times(1)).fightCharacters(eq(1L),eq(2L));
     }

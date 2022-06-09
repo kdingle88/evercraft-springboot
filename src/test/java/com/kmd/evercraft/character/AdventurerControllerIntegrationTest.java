@@ -52,10 +52,10 @@ public class AdventurerControllerIntegrationTest {
         adventurerRepository.save(adventurer1);
         adventurerRepository.save(adventurer2);
 
-        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight?" + "attackingCharacterID=" + adventurer1.getId() + "&attackedCharacterID=" + adventurer2.getId());
+        URI uri = new URI("http://localhost:" + port + "/api/v1/characters/fight");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<List<Adventurer>> fightingCharactersRequest = new HttpEntity<>(List.of(adventurer1, adventurer2), headers);
+        HttpEntity<List<Long>> fightingCharactersRequest = new HttpEntity<>(List.of(adventurer1.getId(), adventurer2.getId()), headers);
         ResponseEntity<List<Adventurer>> responseEntity = this.restTemplate.exchange(
                 uri,
                 HttpMethod.PUT,
