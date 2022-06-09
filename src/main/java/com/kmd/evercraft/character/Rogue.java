@@ -1,6 +1,8 @@
 package com.kmd.evercraft.character;
 
 public class Rogue extends Adventurer {
+    private int critModifier = 2;
+    private boolean ignoreDex = true;
 
     public Rogue(Long id, String name, AdventurerAlignment alignment) throws Exception {
         super(id, name, alignment);
@@ -15,6 +17,10 @@ public class Rogue extends Adventurer {
         super(name, alignment);
     }
 
+    @Override
+    public int getCritModifier() { return this.critModifier;}
+    @Override
+    public boolean canIgnoreDex() { return this.ignoreDex; }
     @Override
     public int getTotalRoll(int naturalRoll) {
         int dexMod = this.getDex().getModifier();

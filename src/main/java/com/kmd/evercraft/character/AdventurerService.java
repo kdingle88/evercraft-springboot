@@ -60,10 +60,7 @@ public class AdventurerService {
         }
 
         if(isCriticalHit) {
-            if(attackingAdventurer instanceof Rogue) {
-                damage += attackingAdventurer.calculateDamage();
-            }
-            damage += attackingAdventurer.calculateDamage();
+            damage += (attackingAdventurer.calculateDamage() * attackingAdventurer.getCritModifier());
         }
 
         attackedAdventurer.setHitPoints(attackedAdventurer.getHitPoints() - damage);
@@ -74,7 +71,7 @@ public class AdventurerService {
     private boolean isHit(Adventurer attackingAdventurer, Adventurer attackedAdventurer, int totalRoll) {
         int attackedArmor = attackedAdventurer.getArmor();
 
-        if(attackingAdventurer instanceof Rogue && attackedAdventurer.getDexterity() > 10) {
+        if(attackingAdventurer.canIgnoreDex() && attackedAdventurer.getDexterity() > 10) {
             attackedArmor -= attackedAdventurer.getDex().getModifier();
         }
         return attackedArmor <= totalRoll;

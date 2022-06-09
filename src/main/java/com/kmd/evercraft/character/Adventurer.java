@@ -16,32 +16,36 @@ public class Adventurer {
     private int hitPoints = 5;
 
     private int strength = 10;
-
     @Transient
     private Ability str = new Ability();
 
     private int dexterity = 10;
-
     @Transient
     private Ability dex = new Ability();
-    private int constitution = 10;
 
+    private int constitution = 10;
     @Transient
     private Ability con = new Ability();
-    private int wisdom = 10;
 
+    private int wisdom = 10;
     @Transient
     private Ability wis = new Ability();
-    private int intelligence = 10;
 
+    private int intelligence = 10;
     @Transient
     private Ability intel = new Ability();
-    private int charisma = 10;
 
+    private int charisma = 10;
     @Transient
     private Ability cha = new Ability();
+
     protected int level = 1;
     private int xp;
+    @Transient
+    private int critModifier = 1;
+    @Transient
+    private boolean IgnoreDex = false;
+
 
 
     public Adventurer() {
@@ -221,6 +225,10 @@ public class Adventurer {
             this.level = newLevel;
         }
     }
+
+    public int getCritModifier(){ return this.critModifier; }
+
+    public boolean canIgnoreDex(){return this.IgnoreDex;}
 
     public int getLevelMod() {
         return this.level / 2;
