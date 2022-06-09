@@ -17,7 +17,7 @@ public class Rogue extends Adventurer {
 
     @Override
     public int getTotalRoll(int naturalRoll) {
-        int dexMod = getModifier(getDexterity());
+        int dexMod = this.getDex().getModifier();
         int levelMod = getLevelMod();
 
         return naturalRoll + dexMod + levelMod;
@@ -26,7 +26,7 @@ public class Rogue extends Adventurer {
     @Override
     public int calculateDamage() {
         int damage = 1;
-        int modifier = getModifier(getDexterity());
+        int modifier = this.getDex().getModifier();
 
         if(modifier > 0) {
             damage += modifier;

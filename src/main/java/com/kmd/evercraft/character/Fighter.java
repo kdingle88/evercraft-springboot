@@ -25,14 +25,14 @@ public class Fighter extends Adventurer {
     @Override
     protected void addLevel(int xp) {
 
-        int newLevel = (int) (xp / 1000) + 1;
-        int baseHealthMultiplier = (int) (xp / 1000);
+        int newLevel = (xp / 1000) + 1;
+        int baseHealthMultiplier = (xp / 1000);
 
         if (getLevel() < newLevel) {
 
             this.level = newLevel;
 
-            setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + getModifier(getConstitution())));
+            setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + this.getCon().getModifier()));
         }
     }
     @Override

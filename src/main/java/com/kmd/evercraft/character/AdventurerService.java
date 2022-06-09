@@ -75,7 +75,7 @@ public class AdventurerService {
         int attackedArmor = attackedAdventurer.getArmor();
 
         if(attackingAdventurer instanceof Rogue && attackedAdventurer.getDexterity() > 10) {
-            attackedArmor -= Adventurer.getModifier(attackedAdventurer.getDexterity());
+            attackedArmor -= attackedAdventurer.getDex().getModifier();
         }
         return attackedArmor <= totalRoll;
     }

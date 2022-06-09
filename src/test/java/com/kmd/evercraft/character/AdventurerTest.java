@@ -39,25 +39,6 @@ public class AdventurerTest {
     }
 
     @Test
-    public void abilitiesDefaultToTen() {
-        Adventurer adventurer = new Adventurer();
-
-        assertEquals(10, adventurer.getStrength());
-        assertEquals(10, adventurer.getDexterity());
-        assertEquals(10, adventurer.getConstitution());
-        assertEquals(10, adventurer.getWisdom());
-        assertEquals(10, adventurer.getIntelligence());
-        assertEquals(10, adventurer.getCharisma());
-    }
-
-    @Test
-    public void getModifierWithScoreReturnsModifier() {
-        assertEquals(-5, Adventurer.getModifier(1));
-        assertEquals(0, Adventurer.getModifier(10));
-        assertEquals(1, Adventurer.getModifier(12));
-    }
-
-    @Test
     public void dexterityModifierIncreasesArmor() {
         Adventurer adventurer = new Adventurer();
         adventurer.setDexterity(12);

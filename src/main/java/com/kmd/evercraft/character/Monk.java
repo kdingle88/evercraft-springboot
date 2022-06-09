@@ -2,6 +2,7 @@ package com.kmd.evercraft.character;
 
 public class Monk extends Adventurer {
     private int wisdom = 10;
+    private Ability wis = new Ability();
 
     public Monk() {
         super();
@@ -19,16 +20,17 @@ public class Monk extends Adventurer {
 
             this.level = newLevel;
 
-            setHitPoints(getHitPoints() + (6 * baseHealthMultiplier + getModifier(getConstitution())));
+            setHitPoints(getHitPoints() + (6 * baseHealthMultiplier + this.getCon().getModifier()));
         }
     }
 
     @Override
     public void setWisdom(int wisdom) {
-        if(getModifier(wisdom) > 0) {
-            setArmor(getArmor() + getModifier(wisdom));
+        this.wisdom = wisdom;
+        this.wis = new Ability(wisdom);
+        if(this.wis.getModifier() > 0) {
+            setArmor(getArmor() + this.wis.getModifier());
         }
 
-        this.wisdom = wisdom;
     }
 }

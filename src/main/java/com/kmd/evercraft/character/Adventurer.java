@@ -17,11 +17,29 @@ public class Adventurer {
 
     private int strength = 10;
 
+    @Transient
+    private Ability str = new Ability();
+
     private int dexterity = 10;
+
+    @Transient
+    private Ability dex = new Ability();
     private int constitution = 10;
+
+    @Transient
+    private Ability con = new Ability();
     private int wisdom = 10;
+
+    @Transient
+    private Ability wis = new Ability();
     private int intelligence = 10;
+
+    @Transient
+    private Ability intel = new Ability();
     private int charisma = 10;
+
+    @Transient
+    private Ability cha = new Ability();
     protected int level = 1;
     private int xp;
 
@@ -78,10 +96,16 @@ public class Adventurer {
     }
 
     public int getStrength() {
-        return strength;
+        return this.strength;
+    }
+
+    public Ability getStr() {
+        return this.str;
     }
 
     public void setStrength(int strength) {
+        this.str = new Ability(strength);
+
         this.strength = strength;
     }
 
@@ -89,30 +113,47 @@ public class Adventurer {
         return dexterity;
     }
 
-    public void setDexterity(int dexterity) {
+    public Ability getDex() {
+        return dex;
+    }
 
-        setArmor(armor + getModifier(dexterity));
+    public void setDexterity(int dexterity) {
+        this.dex = new Ability(dexterity);
 
         this.dexterity = dexterity;
+
+        setArmor(armor + this.dex.getModifier());
+
     }
 
     public int getConstitution() {
         return constitution;
     }
 
+    public Ability getCon() {
+        return con;
+    }
+
     public void setConstitution(int constitution) {
-        int modifiedHP = hitPoints + getModifier(constitution);
+        this.con = new Ability(constitution);
+        this.constitution = constitution;
+
+        int modifiedHP = hitPoints + this.con.getModifier();
 
         setHitPoints(Math.max(modifiedHP, 1));
 
-        this.constitution = constitution;
     }
 
     public int getWisdom() {
         return wisdom;
     }
 
+    public Ability getWis() {
+        return wis;
+    }
+
     public void setWisdom(int wisdom) {
+        this.wis = new Ability(wisdom);
         this.wisdom = wisdom;
     }
 
@@ -120,15 +161,26 @@ public class Adventurer {
         return intelligence;
     }
 
+    public Ability getIntel() {
+        return intel;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intel = new Ability(intelligence);
+        this.intelligence = intelligence;
+    }
+
     public int getCharisma() {
         return charisma;
     }
 
-    public static Integer getModifier(int score) {
+    public Ability getCha() {
+        return cha;
+    }
 
-        int modifier = (int)Math.floor(score / 2) - 5;
-
-        return Integer.valueOf(modifier);
+    public void setCharisma(int charisma) {
+        this.cha = new Ability(charisma);
+        this.charisma = charisma;
     }
 
     public int getLevel() {
@@ -164,7 +216,7 @@ public class Adventurer {
             int levelDifference = newLevel - this.level;
 
             for(int i=0; i < levelDifference; i++) {
-                setHitPoints(getHitPoints() + (5 + getModifier(getConstitution())));
+                setHitPoints(getHitPoints() + (5 + this.getCon().getModifier()));
             }
             this.level = newLevel;
         }
@@ -176,7 +228,7 @@ public class Adventurer {
 
     public int calculateDamage() {
         int damage = 1;
-        int modifier = getModifier(getStrength());
+        int modifier = this.str.getModifier();
 
         if(modifier > 0) {
             damage += modifier;
@@ -189,7 +241,7 @@ public class Adventurer {
     }
 
     public int getTotalRoll(int naturalRoll) {
-        int strengthMod = getModifier(getStrength());
+        int strengthMod = this.str.getModifier();
         int levelMod = getLevelMod();
 
         return naturalRoll + strengthMod + levelMod;
