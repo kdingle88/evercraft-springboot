@@ -18,6 +18,8 @@ class FighterTest {
         Adventurer fighter = new Fighter();
         fighter.setXP(1000);
 
+        fighter.updateCharacter();
+
         assertEquals(20,fighter.getHitPoints());
     }
 

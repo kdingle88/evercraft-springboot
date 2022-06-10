@@ -125,10 +125,8 @@ public class Adventurer {
         this.dex = new Ability(dexterity);
 
         this.dexterity = dexterity;
-
-        setArmor(armor + this.dex.getModifier());
-
     }
+
 
     public int getConstitution() {
         return constitution;
@@ -141,11 +139,6 @@ public class Adventurer {
     public void setConstitution(int constitution) {
         this.con = new Ability(constitution);
         this.constitution = constitution;
-
-        int modifiedHP = hitPoints + this.con.getModifier();
-
-        setHitPoints(Math.max(modifiedHP, 1));
-
     }
 
     public int getWisdom() {
@@ -202,28 +195,17 @@ public class Adventurer {
     public void setXP(int xp) {
         this.xp = xp;
 
-        this.addLevel(this.xp);
+        updateLevel();
 
     }
 
     public void addXP(int xp) {
         this.xp += xp;
-
-        this.addLevel(this.xp);
     }
 
     protected void addLevel(int xp) {
         int xpToLevel = xp / 1000;
-        int newLevel = xpToLevel + 1;
-
-        if(this.level != newLevel) {
-            int levelDifference = newLevel - this.level;
-
-            for(int i=0; i < levelDifference; i++) {
-                setHitPoints(getHitPoints() + (5 + this.getCon().getModifier()));
-            }
-            this.level = newLevel;
-        }
+        this.level = xpToLevel + 1;
     }
 
     public int getCritModifier(){ return this.critModifier; }
@@ -253,5 +235,24 @@ public class Adventurer {
         int levelMod = getLevelMod();
 
         return naturalRoll + strengthMod + levelMod;
+    }
+
+    public void updateHealth() {
+        int modifiedHP = this.level * (5 + this.getCon().getModifier());
+
+        setHitPoints(Math.max(modifiedHP, 1));
+    }
+    public void updateArmor() {
+        setArmor(armor + this.dex.getModifier());
+    }
+
+    public void updateLevel() {
+        this.addLevel(this.xp);
+    }
+
+    public void updateCharacter() {
+        updateHealth();
+        updateArmor();
+        updateLevel();
     }
 }

@@ -43,6 +43,8 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setDexterity(12);
 
+        adventurer.updateCharacter();
+
         assertEquals(11, adventurer.getArmor());
     }
 
@@ -51,6 +53,8 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setConstitution(15);
 
+        adventurer.updateCharacter();
+
         assertEquals(7, adventurer.getHitPoints());
     }
 
@@ -58,6 +62,8 @@ public class AdventurerTest {
     public void startingHPisAtLeastOne() {
         Adventurer adventurer = new Adventurer();
         adventurer.setConstitution(1);
+
+        adventurer.updateCharacter();
 
         assertEquals(1, adventurer.getHitPoints());
     }
@@ -94,6 +100,8 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(1000);
 
+        adventurer.updateCharacter();
+
         assertEquals(10, adventurer.getHitPoints());
     }
 
@@ -102,6 +110,8 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setConstitution(1);
         adventurer.setXP(1000);
+
+        adventurer.updateCharacter();
 
         assertEquals(1, adventurer.getHitPoints());
     }

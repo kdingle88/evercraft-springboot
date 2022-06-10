@@ -13,12 +13,6 @@ class DiceRollerTest {
 
 
     @Test
-    public void rollD20() {
-        assertTrue(roller.rollD20() <= 20);
-        assertTrue(roller.rollD20() > 0);
-    }
-
-    @Test
     public void rollD20CalledWithProperBounds() {
         roller.rollD20();
 

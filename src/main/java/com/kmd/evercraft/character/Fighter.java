@@ -1,5 +1,7 @@
 package com.kmd.evercraft.character;
 
+import javax.persistence.OrderBy;
+
 public class Fighter extends Adventurer {
 
     public Fighter() {
@@ -23,20 +25,15 @@ public class Fighter extends Adventurer {
 
 
     @Override
-    protected void addLevel(int xp) {
-
-        int newLevel = (xp / 1000) + 1;
-        int baseHealthMultiplier = (xp / 1000);
-
-        if (getLevel() < newLevel) {
-
-            this.level = newLevel;
-
-            setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + this.getCon().getModifier()));
-        }
-    }
-    @Override
     public int getLevelMod() {
         return this.level;
+    }
+
+
+    @Override
+    public void updateHealth() {
+        int modifiedHP = this.level * (10 + this.getCon().getModifier());
+
+        setHitPoints(Math.max(modifiedHP, 1));
     }
 }

@@ -221,6 +221,7 @@ class AdventurerServiceTest {
 
         List<Adventurer> updatedAdventurers = adventurerService.fight(attackingAdventurer, attackedAdventurer);
         Adventurer adventurer = updatedAdventurers.get(0);
+        adventurer.updateCharacter();
 
         assertEquals(1000, adventurer.getXP());
         assertEquals(2, adventurer.getLevel());
@@ -274,9 +275,11 @@ class AdventurerServiceTest {
         Adventurer attackingRogue = rogues.get(0);
         Adventurer attackedRogue = rogues.get(1);
         attackedRogue.setDexterity(9);
+        attackedRogue.updateCharacter();
 
         List<Adventurer> updatedAdventurers = adventurerService.fight(attackingRogue, attackedRogue);
         Adventurer damagedAdventurer = updatedAdventurers.get(1);
+
 
         assertEquals(4, damagedAdventurer.getHitPoints());
     }

@@ -17,6 +17,8 @@ class MonkTest {
         Adventurer monk = new Monk();
         monk.setXP(1000);
 
+        monk.updateCharacter();
+
         assertEquals(12,monk.getHitPoints());
     }
 
@@ -24,6 +26,8 @@ class MonkTest {
     public void positiveWisdomModifierIncreasesArmor() {
         Adventurer monk = new Monk();
         monk.setWisdom(12);
+
+        monk.updateCharacter();
 
         assertEquals(11,monk.getArmor());
     }
