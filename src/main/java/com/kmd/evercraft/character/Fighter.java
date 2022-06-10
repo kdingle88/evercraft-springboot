@@ -1,7 +1,5 @@
 package com.kmd.evercraft.character;
 
-import javax.persistence.OrderBy;
-
 public class Fighter extends Adventurer {
 
     public Fighter() {
@@ -32,7 +30,7 @@ public class Fighter extends Adventurer {
 
     @Override
     public void updateHealth() {
-        int modifiedHP = this.level * (10 + this.getCon().getModifier());
+        int modifiedHP = this.level * (10 + this.con.getModifier());
 
         setHitPoints(Math.max(modifiedHP, 1));
     }

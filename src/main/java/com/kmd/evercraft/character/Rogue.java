@@ -23,8 +23,8 @@ public class Rogue extends Adventurer {
     public boolean canIgnoreDex() { return this.ignoreDex; }
     @Override
     public int getTotalRoll(int naturalRoll) {
-        int dexMod = this.getDex().getModifier();
-        int levelMod = getLevelMod();
+        int dexMod = this.dex.getModifier();
+        int levelMod = this.getLevelMod();
 
         return naturalRoll + dexMod + levelMod;
     }
@@ -32,7 +32,7 @@ public class Rogue extends Adventurer {
     @Override
     public int calculateDamage() {
         int damage = 1;
-        int modifier = this.getDex().getModifier();
+        int modifier = this.dex.getModifier();
 
         if(modifier > 0) {
             damage += modifier;

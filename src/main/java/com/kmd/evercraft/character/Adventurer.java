@@ -17,34 +17,34 @@ public class Adventurer {
 
     private int strength = 10;
     @Transient
-    private Ability str = new Ability();
+    protected Ability str = new Ability();
 
     private int dexterity = 10;
     @Transient
-    private Ability dex = new Ability();
+    protected Ability dex = new Ability();
 
     private int constitution = 10;
     @Transient
-    private Ability con = new Ability();
+    protected Ability con = new Ability();
 
     private int wisdom = 10;
     @Transient
-    private Ability wis = new Ability();
+    protected Ability wis = new Ability();
 
     private int intelligence = 10;
     @Transient
-    private Ability intel = new Ability();
+    protected Ability intel = new Ability();
 
     private int charisma = 10;
     @Transient
-    private Ability cha = new Ability();
+    protected Ability cha = new Ability();
 
     protected int level = 1;
     private int xp;
     @Transient
-    private int critModifier = 1;
+    protected int critModifier = 1;
     @Transient
-    private boolean IgnoreDex = false;
+    protected boolean IgnoreDex = false;
 
 
 

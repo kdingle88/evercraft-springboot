@@ -9,17 +9,17 @@ public class Monk extends Adventurer {
 
     @Override
     public void updateHealth() {
-        int modifiedHP = this.level * (6 + this.getCon().getModifier());
+        int modifiedHP = this.level * (6 + this.con.getModifier());
 
         setHitPoints(Math.max(modifiedHP, 1));
     }
 
     @Override
     public void updateArmor() {
-        int armorMod = getDex().getModifier();
+        int armorMod = this.dex.getModifier();
 
-        if(getWis().getModifier() > 0) {
-            armorMod += getWis().getModifier();
+        if(this.wis.getModifier() > 0) {
+            armorMod += this.wis.getModifier();
         }
 
         setArmor(getArmor() + armorMod);
