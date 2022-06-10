@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class AdventurerService {
@@ -15,7 +16,7 @@ public class AdventurerService {
     AdventurerRepository adventurerRepository;
 
 
-    DiceRoller roller = new DiceRoller();
+    DiceRoller roller = new DiceRoller(new Random());
 
     public Adventurer addCharacter(Adventurer adventurer) {
 
