@@ -35,7 +35,6 @@ public class AdventurerControllerIntegrationTest {
 
         ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/api/v1/characters", adventurer, String.class);
         JSONObject json = new JSONObject(response.getBody());
-        System.out.println(response);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("1",json.getString("id"));

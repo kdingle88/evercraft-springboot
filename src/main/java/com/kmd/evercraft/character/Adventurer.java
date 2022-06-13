@@ -7,7 +7,7 @@ public class Adventurer {
     @SequenceGenerator(name = "character_sequence",sequenceName = "character_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "character_sequence")
     @Id
-    private Long id;
+    protected Long id;
     protected String name;
     protected AdventurerAlignment alignment;
 
@@ -184,10 +184,6 @@ public class Adventurer {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.setXP((level - 1) * 1000);
-    }
-
     public int getXP() {
         return xp;
     }
@@ -235,9 +231,11 @@ public class Adventurer {
     }
 
     public void updateHealth() {
-        int modifiedHP = this.level * (5 + this.getCon().getModifier());
+        if(hitPoints > 0) {
+            int modifiedHP = this.level * (5 + this.getCon().getModifier());
 
-        setHitPoints(Math.max(modifiedHP, 1));
+            setHitPoints(Math.max(modifiedHP, 1));
+        }
     }
     public void updateArmor() {
         setArmor(armor + this.dex.getModifier());

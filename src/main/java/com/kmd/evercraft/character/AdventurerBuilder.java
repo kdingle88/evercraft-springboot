@@ -14,6 +14,12 @@ public class AdventurerBuilder implements Builder{
     }
 
     @Override
+    public AdventurerBuilder setId(Long id) {
+        this.adventurer.id = id;
+        return this;
+    }
+
+    @Override
     public AdventurerBuilder setName(String name) {
         this.adventurer.name = name;
         return this;
@@ -87,7 +93,10 @@ public class AdventurerBuilder implements Builder{
     }
 
     public Adventurer build() {
-        return this.adventurer;
+        this.adventurer.updateCharacter();
+        Adventurer createdAdventurer = this.adventurer;
+        this.reset();
+        return createdAdventurer;
     }
 }
 

@@ -1,6 +1,7 @@
 package com.kmd.evercraft.character;
 
 import com.kmd.evercraft.DiceRoller;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +19,12 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AdventurerServiceTest {
+    AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
+
+    @BeforeEach
+    public void resetBuilder() {
+        adventurerBuilder.reset();
+    }
 
     @InjectMocks
     @Spy
@@ -287,13 +294,28 @@ class AdventurerServiceTest {
     }
 
     public List<Adventurer> generateCharacters() {
-        Adventurer adventurer1 = new Adventurer(1L,"Cloud",GOOD);
-        Adventurer adventurer2 = new Adventurer(2L, "Barret",NEUTRAL);
-        Adventurer dyingAdventurer = new Adventurer(3L, "Sephiroth",EVIL);
-        dyingAdventurer.setHitPoints(0);
+        Adventurer adventurer1 = adventurerBuilder
+                .setId(1L)
+                .setName("Cloud")
+                .setAlignment(GOOD)
+                .build();
 
-        return List.of(adventurer1, adventurer2, dyingAdventurer);
+        Adventurer adventurer2 = adventurerBuilder
+                .setId(2L)
+                .setName("Barret")
+                .setAlignment(NEUTRAL)
+                .build();
+
+        Adventurer adventurer3 = adventurerBuilder
+                .setId(3L)
+                .setName("Sephiroth")
+                .setAlignment(EVIL)
+                .setHitPoints(0)
+                .build();
+
+        return List.of(adventurer1, adventurer2, adventurer3);
     }
+
 
     public List<Adventurer> generateFighters() {
         Fighter fightingCharacter1 = new Fighter(11L,"Maco",GOOD);

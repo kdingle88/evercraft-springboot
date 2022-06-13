@@ -2,6 +2,7 @@ package com.kmd.evercraft.character;
 
 public interface Builder {
     void reset();
+    AdventurerBuilder setId(Long id);
     AdventurerBuilder setName(String name);
     AdventurerBuilder setAlignment(AdventurerAlignment alignment);
     AdventurerBuilder setArmor(int armor);
