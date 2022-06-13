@@ -3,8 +3,8 @@ package com.kmd.evercraft.character;
 public class AdventurerBuilder implements Builder{
     private Adventurer adventurer;
 
-    public AdventurerBuilder(Adventurer adventurer) {
-        this.adventurer = adventurer;
+    public AdventurerBuilder() {
+        this.reset();
     }
 
 
@@ -14,64 +14,76 @@ public class AdventurerBuilder implements Builder{
     }
 
     @Override
-    public void setName(String name) {
+    public AdventurerBuilder setName(String name) {
         this.adventurer.name = name;
+        return this;
     }
 
     @Override
-    public void setAlignment(AdventurerAlignment alignment) {
+    public AdventurerBuilder setAlignment(AdventurerAlignment alignment) {
         this.adventurer.alignment = alignment;
+        return this;
     }
 
     @Override
-    public void setArmor(int armor) {
+    public AdventurerBuilder setArmor(int armor) {
         this.adventurer.armor = armor;
+        return this;
     }
 
     @Override
-    public void setHitPoints(int hitPoints) {
+    public AdventurerBuilder setHitPoints(int hitPoints) {
         this.adventurer.hitPoints = hitPoints;
+        return this;
     }
 
     @Override
-    public void setStrength(int strength) {
+    public AdventurerBuilder setStrength(int strength) {
         this.adventurer.str = new Ability(strength);
         this.adventurer.strength = strength;
+        return this;
     }
 
     @Override
-    public void setDexterity(int dexterity) {
+    public AdventurerBuilder setDexterity(int dexterity) {
         this.adventurer.dex = new Ability(dexterity);
         this.adventurer.dexterity = dexterity;
+        return this;
     }
 
     @Override
-    public void setWisdom(int wisdom) {
+    public AdventurerBuilder setWisdom(int wisdom) {
         this.adventurer.wis = new Ability(wisdom);
         this.adventurer.wisdom = wisdom;
+        return this;
     }
 
     @Override
-    public void setIntelligence(int intelligence) {
+    public AdventurerBuilder setIntelligence(int intelligence) {
         this.adventurer.intel = new Ability(intelligence);
         this.adventurer.intelligence = intelligence;
+        return this;
     }
 
     @Override
-    public void setConstitution(int constitution) {
+    public AdventurerBuilder setConstitution(int constitution) {
         this.adventurer.con = new Ability(constitution);
         this.adventurer.constitution = constitution;
+        return this;
     }
 
     @Override
-    public void setCharisma(int charisma) {
+    public AdventurerBuilder setCharisma(int charisma) {
         this.adventurer.cha = new Ability(charisma);
         this.adventurer.charisma = charisma;
+        return this;
     }
 
     @Override
-    public void setXP(int xp) {
+    public AdventurerBuilder setXP(int xp) {
+
         this.adventurer.xp = xp;
+        return this;
     }
 
     public Adventurer build() {

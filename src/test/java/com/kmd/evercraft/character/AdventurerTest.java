@@ -1,5 +1,6 @@
 package com.kmd.evercraft.character;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.kmd.evercraft.character.AdventurerAlignment.GOOD;
@@ -8,10 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdventurerTest {
 
+    AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
+    @BeforeEach
+    public void resetBuilder() {
+        adventurerBuilder.reset();
+    }
+
     @Test
     public void setNameSetsCharactersName() {
-        Adventurer adventurer = new Adventurer();
-        adventurer.setName("Bill");
+        Adventurer adventurer = adventurerBuilder
+                .setName("Bill")
+                .build();
 
         assertEquals("Bill", adventurer.getName());
     }
@@ -210,5 +218,22 @@ public class AdventurerTest {
         adventurer.takeDamage(1);
 
         assertEquals(4, adventurer.getHitPoints());
+    }
+
+    @Test
+    public void builderReturnsCreatedAdventurer() {
+        AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
+
+        Adventurer adventurer = adventurerBuilder
+                .setName("Bob")
+                .setAlignment(GOOD)
+                .build();
+
+
+        assertEquals("Bob", adventurer.getName());
+        assertEquals(GOOD, adventurer.getAlignment());
+
+
+
     }
 }

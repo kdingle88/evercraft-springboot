@@ -2,15 +2,15 @@ package com.kmd.evercraft.character;
 
 public interface Builder {
     void reset();
-    void setName(String name);
-    void setAlignment(AdventurerAlignment alignment);
-    void setArmor(int armor);
-    void setHitPoints(int hp);
-    void setStrength(int strength);
-    void setDexterity(int dexterity);
-    void setWisdom(int wisdom);
-    void setIntelligence(int intelligence);
-    void setConstitution(int constitution);
-    void setCharisma(int charisma);
-    void setXP(int xp);
+    AdventurerBuilder setName(String name);
+    AdventurerBuilder setAlignment(AdventurerAlignment alignment);
+    AdventurerBuilder setArmor(int armor);
+    AdventurerBuilder setHitPoints(int hp);
+    AdventurerBuilder setStrength(int strength);
+    AdventurerBuilder setDexterity(int dexterity);
+    AdventurerBuilder setWisdom(int wisdom);
+    AdventurerBuilder setIntelligence(int intelligence);
+    AdventurerBuilder setConstitution(int constitution);
+    AdventurerBuilder setCharisma(int charisma);
+    AdventurerBuilder setXP(int xp);
 }
