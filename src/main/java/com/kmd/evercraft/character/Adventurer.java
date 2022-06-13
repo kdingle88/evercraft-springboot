@@ -252,4 +252,8 @@ public class Adventurer {
         updateHealth();
         updateArmor();
     }
+
+    public void takeDamage(int damage) {
+        this.hitPoints -= damage;
+    }
 }

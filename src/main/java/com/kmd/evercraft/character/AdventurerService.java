@@ -64,7 +64,7 @@ public class AdventurerService {
             damage += (attackingAdventurer.calculateDamage() * attackingAdventurer.getCritModifier());
         }
 
-        attackedAdventurer.setHitPoints(attackedAdventurer.getHitPoints() - damage);
+        attackedAdventurer.takeDamage(damage);
 
         return new ArrayList<>(Arrays.asList(attackingAdventurer, attackedAdventurer));
     }

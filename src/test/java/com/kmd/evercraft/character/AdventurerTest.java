@@ -202,4 +202,13 @@ public class AdventurerTest {
 
         assertEquals(2, adventurer.calculateDamage());
     }
+
+    @Test
+    public void adventurerCanTakeDamage() {
+        Adventurer adventurer = new Adventurer();
+
+        adventurer.takeDamage(1);
+
+        assertEquals(4, adventurer.getHitPoints());
+    }
 }

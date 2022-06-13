@@ -73,4 +73,9 @@ public class AdventurerBuilder implements Builder{
     public void setXP(int xp) {
         this.adventurer.xp = xp;
     }
+
+    public Adventurer build() {
+        return this.adventurer;
+    }
 }
+
