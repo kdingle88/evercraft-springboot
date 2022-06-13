@@ -152,6 +152,7 @@ class AdventurerServiceTest {
         Adventurer attackedAdventurer = adventurers.get(1);
         when(roller.rollD20()).thenReturn(9);
         attackingAdventurer.setXP(3000);
+        attackingAdventurer.updateCharacter();
 
         List<Adventurer> updatedAdventurers = adventurerService.fight(attackingAdventurer, attackedAdventurer);
         Adventurer damagedAdventurer = updatedAdventurers.get(1);
@@ -178,6 +179,7 @@ class AdventurerServiceTest {
         Adventurer attacking = fighters.get(0);
         Adventurer attacked = fighters.get(1);
         attacking.setXP(2000);
+        attacking.updateCharacter();
 
         List<Adventurer> updatedAdventurers = adventurerService.fight(attacking, attacked);
         Adventurer damaged = updatedAdventurers.get(1);

@@ -8,39 +8,39 @@ public class Adventurer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "character_sequence")
     @Id
     private Long id;
-    private String name;
-    private AdventurerAlignment alignment;
+    protected String name;
+    protected AdventurerAlignment alignment;
 
-    private int armor = 10;
+    protected int armor = 10;
 
-    private int hitPoints = 5;
+    protected int hitPoints = 5;
 
-    private int strength = 10;
+    protected int strength = 10;
     @Transient
     protected Ability str = new Ability();
 
-    private int dexterity = 10;
+    protected int dexterity = 10;
     @Transient
     protected Ability dex = new Ability();
 
-    private int constitution = 10;
+    protected int constitution = 10;
     @Transient
     protected Ability con = new Ability();
 
-    private int wisdom = 10;
+    protected int wisdom = 10;
     @Transient
     protected Ability wis = new Ability();
 
-    private int intelligence = 10;
+    protected int intelligence = 10;
     @Transient
     protected Ability intel = new Ability();
 
-    private int charisma = 10;
+    protected int charisma = 10;
     @Transient
     protected Ability cha = new Ability();
 
     protected int level = 1;
-    private int xp;
+    protected int xp;
     @Transient
     protected int critModifier = 1;
     @Transient
@@ -194,9 +194,6 @@ public class Adventurer {
 
     public void setXP(int xp) {
         this.xp = xp;
-
-        updateLevel();
-
     }
 
     public void addXP(int xp) {
@@ -251,8 +248,8 @@ public class Adventurer {
     }
 
     public void updateCharacter() {
+        updateLevel();
         updateHealth();
         updateArmor();
-        updateLevel();
     }
 }

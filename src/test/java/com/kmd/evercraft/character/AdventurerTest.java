@@ -85,6 +85,7 @@ public class AdventurerTest {
     public void setXPWith1000XPIncreasesLevelByOne() {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(1000);
+        adventurer.updateCharacter();
 
         assertEquals(2, adventurer.getLevel());
     }
@@ -92,6 +93,7 @@ public class AdventurerTest {
     public void setXPWith9000XPIncreasesNineLevels() {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(9000);
+        adventurer.updateCharacter();
 
         assertEquals(10, adventurer.getLevel());
     }
@@ -99,6 +101,7 @@ public class AdventurerTest {
     public void hpIncreasesByFiveForEachLevelIncrease() {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(1000);
+        adventurer.updateCharacter();
 
         adventurer.updateCharacter();
 
@@ -145,6 +148,7 @@ public class AdventurerTest {
     public void setLevelOverwritesLevelAndXP() {
         Adventurer adventurer = new Adventurer();
         adventurer.setLevel(10);
+        adventurer.updateCharacter();
 
         assertEquals(10, adventurer.getLevel());
         assertEquals(9000, adventurer.getXP());
@@ -154,6 +158,7 @@ public class AdventurerTest {
     public void setXPOverwritesLevelAndXP() {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(10000);
+        adventurer.updateCharacter();
 
         assertEquals(11, adventurer.getLevel());
         assertEquals(10000, adventurer.getXP());
@@ -164,6 +169,7 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setLevel(15);
         adventurer.setXP(10000);
+        adventurer.updateCharacter();
 
         assertEquals(11, adventurer.getLevel());
         assertEquals(10000, adventurer.getXP());
@@ -174,6 +180,7 @@ public class AdventurerTest {
         Adventurer adventurer = new Adventurer();
         adventurer.setXP(10000);
         adventurer.setLevel(15);
+        adventurer.updateCharacter();
 
         assertEquals(15, adventurer.getLevel());
         assertEquals(14000, adventurer.getXP());
