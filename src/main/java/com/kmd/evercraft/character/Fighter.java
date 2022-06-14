@@ -2,6 +2,7 @@ package com.kmd.evercraft.character;
 
 public class Fighter extends Adventurer {
 
+
     public Fighter() {
         super();
 

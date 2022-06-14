@@ -35,6 +35,7 @@ class MonkTest {
                 .setWisdom(12)
                 .build();
 
+
         assertEquals(11,monk.getArmor());
     }
 
