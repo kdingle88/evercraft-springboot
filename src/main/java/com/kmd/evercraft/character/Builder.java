@@ -4,7 +4,7 @@ public interface Builder {
     void reset();
     AdventurerBuilder setId(Long id);
     AdventurerBuilder setName(String name);
-    AdventurerBuilder setAlignment(AdventurerAlignment alignment);
+    AdventurerBuilder setAlignment(AdventurerAlignment alignment) throws Exception;
     AdventurerBuilder setArmor(int armor);
     AdventurerBuilder setHitPoints(int hp);
     AdventurerBuilder setStrength(int strength);

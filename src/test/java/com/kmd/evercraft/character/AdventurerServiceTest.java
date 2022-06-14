@@ -21,11 +21,10 @@ import static org.mockito.Mockito.*;
 class AdventurerServiceTest {
     AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
     FighterBuilder fighterBuilder = new FighterBuilder();
+    RogueBuilder rogueBuilder = new RogueBuilder();
 
     @BeforeEach
-    public void resetBuilder() {
-        adventurerBuilder.reset();
-    }
+    public void resetBuilder() {adventurerBuilder.reset();}
 
     @InjectMocks
     @Spy
@@ -38,7 +37,7 @@ class AdventurerServiceTest {
     DiceRoller roller;
 
     @Test
-    public void fightCharactersFindsCharacters() {
+    public void fightCharactersFindsCharacters() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         when(adventurerRepository.findById(1L)).thenReturn(Optional.of(adventurers.get(0)));
         when(adventurerRepository.findById(2L)).thenReturn(Optional.of(adventurers.get(1)));
@@ -50,7 +49,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void fightCharactersSavesUpdatedCharacters() {
+    public void fightCharactersSavesUpdatedCharacters() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         when(adventurerRepository.findById(1L)).thenReturn(Optional.of(adventurers.get(0)));
         when(adventurerRepository.findById(2L)).thenReturn(Optional.of(adventurers.get(1)));
@@ -61,7 +60,7 @@ class AdventurerServiceTest {
         verify(adventurerRepository, times(1)).save(eq(adventurers.get(1)));
     }
     @Test
-    public void fightCharactersDeletesCharactersWhenHPIsZero() {
+    public void fightCharactersDeletesCharactersWhenHPIsZero() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         when(adventurerRepository.findById(1L)).thenReturn(Optional.of(adventurers.get(0)));
         when(adventurerRepository.findById(3L)).thenReturn(Optional.of(adventurers.get(2)));
@@ -74,7 +73,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void fightHigherRollThanAttackedArmorLowersHP() {
+    public void fightHigherRollThanAttackedArmorLowersHP() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -87,7 +86,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void fightEqualRollToAttackedArmorLowersHP() {
+    public void fightEqualRollToAttackedArmorLowersHP() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -100,7 +99,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void fightLowerRollThanAttackedArmorKeepsHPTheSame() {
+    public void fightLowerRollThanAttackedArmorKeepsHPTheSame() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -113,7 +112,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void fightCriticalRollLowersAttackedHpByDouble() {
+    public void fightCriticalRollLowersAttackedHpByDouble() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -126,7 +125,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void attackingStrengthModifierIncreasesTotalRoll() {
+    public void attackingStrengthModifierIncreasesTotalRoll() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         attackingAdventurer.setStrength(12);
@@ -138,7 +137,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void minimumDamageIsOneOnCritical() {
+    public void minimumDamageIsOneOnCritical() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -154,7 +153,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void attackIncreaseWithEvenLevel() {
+    public void attackIncreaseWithEvenLevel() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -168,7 +167,7 @@ class AdventurerServiceTest {
         assertEquals(4, damagedAdventurer.getHitPoints());
     }
     @Test
-    public void attackStaysWithOddLevel() {
+    public void attackStaysWithOddLevel() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -196,7 +195,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void onHitAttackerGainsTenXP() {
+    public void onHitAttackerGainsTenXP() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -209,7 +208,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void onMissAttackerXPStaysTheSame() {
+    public void onMissAttackerXPStaysTheSame() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -222,7 +221,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void attackerCanLevelUpWhenGainingXP() {
+    public void attackerCanLevelUpWhenGainingXP() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -238,7 +237,7 @@ class AdventurerServiceTest {
     }
 
     @Test
-    public void onTwoHitsAttackerXPIncreasesTwenty() {
+    public void onTwoHitsAttackerXPIncreasesTwenty() throws Exception{
         List<Adventurer> adventurers = generateCharacters();
         Adventurer attackingAdventurer = adventurers.get(0);
         Adventurer attackedAdventurer = adventurers.get(1);
@@ -294,7 +293,7 @@ class AdventurerServiceTest {
         assertEquals(4, damagedAdventurer.getHitPoints());
     }
 
-    public List<Adventurer> generateCharacters() {
+    public List<Adventurer> generateCharacters() throws Exception{
         Adventurer adventurer1 = adventurerBuilder
                 .setId(1L)
                 .setName("Cloud")
@@ -324,6 +323,7 @@ class AdventurerServiceTest {
                 .setName("Maco")
                 .setAlignment(GOOD)
                 .build();
+
         Fighter fightingCharacter2 = fighterBuilder
                 .setId(12L)
                 .setName("Blaze")
@@ -334,8 +334,17 @@ class AdventurerServiceTest {
     }
 
     public List<Adventurer> generateRogues() throws Exception {
-        Rogue rogueCharacter1 = new Rogue(21L,"Lily",NEUTRAL);
-        Rogue rogueCharacter2 = new Rogue(22L,"John",EVIL);
+        Rogue rogueCharacter1 = rogueBuilder.
+                setId(21l)
+                .setName("Lily")
+                .setAlignment(NEUTRAL)
+                .build();
+
+        Rogue rogueCharacter2 = rogueBuilder.
+                setId(22l)
+                .setName("John")
+                .setAlignment(EVIL)
+                .build();
 
         return List.of(rogueCharacter1,rogueCharacter2);
     }

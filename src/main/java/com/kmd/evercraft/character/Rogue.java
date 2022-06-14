@@ -4,6 +4,10 @@ public class Rogue extends Adventurer {
     private int critModifier = 2;
     private boolean ignoreDex = true;
 
+    public Rogue() {
+        super();
+    }
+
     public Rogue(Long id, String name, AdventurerAlignment alignment) throws Exception {
         super(id, name, alignment);
 

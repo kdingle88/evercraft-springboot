@@ -26,7 +26,7 @@ public class AdventurerBuilder implements Builder{
     }
 
     @Override
-    public AdventurerBuilder setAlignment(AdventurerAlignment alignment) {
+    public AdventurerBuilder setAlignment(AdventurerAlignment alignment) throws Exception{
         this.adventurer.alignment = alignment;
         return this;
     }

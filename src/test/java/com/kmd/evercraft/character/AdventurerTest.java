@@ -25,7 +25,7 @@ public class AdventurerTest {
     }
 
     @Test
-    public void setAlignmentSetsCharactersAlignment() {
+    public void setAlignmentSetsCharactersAlignment() throws Exception{
         Adventurer adventurer = adventurerBuilder
                 .setAlignment(GOOD)
                 .build();
@@ -187,7 +187,7 @@ public class AdventurerTest {
     }
 
     @Test
-    public void builderReturnsCreatedAdventurer() {
+    public void builderReturnsCreatedAdventurer() throws Exception{
         AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
 
         Adventurer adventurer = adventurerBuilder
