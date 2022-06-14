@@ -92,6 +92,7 @@ public class FighterBuilder extends AdventurerBuilder implements Builder{
         return this;
     }
 
+    @Override
     public Fighter build() {
         this.fighter.updateCharacter();
         Fighter createdFighter = this.fighter;

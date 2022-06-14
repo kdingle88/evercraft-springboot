@@ -96,6 +96,7 @@ public class RogueBuilder extends AdventurerBuilder implements Builder{
         return this;
     }
 
+    @Override
     public Rogue build() {
         this.rogue.updateCharacter();
         Rogue createdRogue = this.rogue;

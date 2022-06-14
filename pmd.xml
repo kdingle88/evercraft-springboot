@@ -33,6 +33,7 @@
         <exclude name="AvoidThrowingRawExceptionTypes"/>
         <exclude name="UseUtilityClass"/>
         <exclude name="TooManyMethods"/>
+        <exclude name="TooManyFields"/>
     </rule>
 
     <rule ref="category/java/multithreading.xml" />
