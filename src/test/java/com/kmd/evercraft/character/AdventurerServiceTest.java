@@ -20,6 +20,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class AdventurerServiceTest {
     AdventurerBuilder adventurerBuilder = new AdventurerBuilder();
+    FighterBuilder fighterBuilder = new FighterBuilder();
 
     @BeforeEach
     public void resetBuilder() {
@@ -318,8 +319,16 @@ class AdventurerServiceTest {
 
 
     public List<Adventurer> generateFighters() {
-        Fighter fightingCharacter1 = new Fighter(11L,"Maco",GOOD);
-        Fighter fightingCharacter2 = new Fighter(12L,"Blaze",NEUTRAL);
+        Fighter fightingCharacter1 = fighterBuilder
+                .setId(11L)
+                .setName("Maco")
+                .setAlignment(GOOD)
+                .build();
+        Fighter fightingCharacter2 = fighterBuilder
+                .setId(12L)
+                .setName("Blaze")
+                .setAlignment(NEUTRAL)
+                .build();
 
         return List.of(fightingCharacter1,fightingCharacter2);
     }

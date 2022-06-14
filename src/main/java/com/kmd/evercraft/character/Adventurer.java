@@ -62,6 +62,27 @@ public class Adventurer {
         this.alignment = alignment;
     }
 
+    public Adventurer(Long id, String name, AdventurerAlignment alignment, int armor, int hitPoints, int strength, Ability str, int dexterity, Ability dex, int constitution, Ability con, int wisdom, Ability wis, int intelligence, Ability intel, int charisma, Ability cha, int xp) {
+        this.id = id;
+        this.name = name;
+        this.alignment = alignment;
+        this.armor = armor;
+        this.hitPoints = hitPoints;
+        this.strength = strength;
+        this.str = str;
+        this.dexterity = dexterity;
+        this.dex = dex;
+        this.constitution = constitution;
+        this.con = con;
+        this.wisdom = wisdom;
+        this.wis = wis;
+        this.intelligence = intelligence;
+        this.intel = intel;
+        this.charisma = charisma;
+        this.cha = cha;
+        this.xp = xp;
+    }
+
     public Long getId() {
         return id;
     }
