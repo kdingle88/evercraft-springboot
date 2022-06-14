@@ -9,7 +9,7 @@ plugins {
 
 group = 'com.kmd'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = "16"
 
 repositories {
 	mavenCentral()
@@ -58,3 +58,4 @@ jacocoTestReport {
 		xml.destination file("${buildDir}/reports/jacoco/jacoco.xml")
 	}
 }
+targetCompatibility = JavaVersion.VERSION_16

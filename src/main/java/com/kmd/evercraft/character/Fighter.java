@@ -1,6 +1,7 @@
 package com.kmd.evercraft.character;
 
-public class Fighter extends Character {
+public class Fighter extends Adventurer {
+
 
     public Fighter() {
         super();
@@ -9,13 +10,13 @@ public class Fighter extends Character {
 
     }
 
-    public Fighter(Long id, String name, CharacterAlignment alignment) {
+    public Fighter(Long id, String name, AdventurerAlignment alignment) {
         super(id, name, alignment);
 
         this.setHitPoints(10);
     }
 
-    public Fighter(String name, CharacterAlignment alignment) {
+    public Fighter(String name, AdventurerAlignment alignment) {
         super(name, alignment);
 
         this.setHitPoints(10);
@@ -23,20 +24,15 @@ public class Fighter extends Character {
 
 
     @Override
-    protected void addLevel(int xp) {
-
-        int newLevel = (int) (xp / 1000) + 1;
-        int baseHealthMultiplier = (int) (xp / 1000);
-
-        if (getLevel() < newLevel) {
-
-            this.level = newLevel;
-
-            setHitPoints(getHitPoints() + (10 * baseHealthMultiplier + getModifier(getConstitution())));
-        }
-    }
-    @Override
     public int getLevelMod() {
         return this.level;
+    }
+
+
+    @Override
+    public void updateHealth() {
+        int modifiedHP = this.level * (10 + this.con.getModifier());
+
+        setHitPoints(Math.max(modifiedHP, 1));
     }
 }

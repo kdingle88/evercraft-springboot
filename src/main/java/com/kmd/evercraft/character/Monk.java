@@ -1,8 +1,6 @@
 package com.kmd.evercraft.character;
 
-public class Monk extends Character{
-    private int wisdom = 10;
-
+public class Monk extends Adventurer {
     public Monk() {
         super();
 
@@ -10,25 +8,20 @@ public class Monk extends Character{
     }
 
     @Override
-    protected void addLevel(int xp) {
+    public void updateHealth() {
+        int modifiedHP = this.level * (6 + this.con.getModifier());
 
-        int newLevel = (int) (xp / 1000) + 1;
-        int baseHealthMultiplier = (int) (xp / 1000);
-
-        if (getLevel() < newLevel) {
-
-            this.level = newLevel;
-
-            setHitPoints(getHitPoints() + (6 * baseHealthMultiplier + getModifier(getConstitution())));
-        }
+        setHitPoints(Math.max(modifiedHP, 1));
     }
 
     @Override
-    public void setWisdom(int wisdom) {
-        if(getModifier(wisdom) > 0) {
-            setArmor(getArmor() + getModifier(wisdom));
+    public void updateArmor() {
+        int armorMod = this.dex.getModifier();
+
+        if(this.wis.getModifier() > 0) {
+            armorMod += this.wis.getModifier();
         }
 
-        this.wisdom = wisdom;
+        setArmor(getArmor() + armorMod);
     }
 }

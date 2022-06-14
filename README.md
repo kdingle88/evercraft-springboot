@@ -14,17 +14,17 @@ Guy Royse [(@guyroyse)](https://twitter.com/guyroyse) and George Walters II [(@w
 
 ### Iteration 1 - Core
 
-This iteration covers core functionality for leveling, combat, and character attributes.
+This iteration covers core functionality for leveling, combat, and adventurer attributes.
 
 #### Feature: Create a Character
 
-> As a character I want to have a name so that I can be distinguished from other characters
+> As a adventurer I want to have a name so that I can be distinguished from other adventurers
 
 - can get and set Name
 
 #### Feature: Alignment
 
-> As a character I want to have an alignment so that I have something to guide my actions
+> As a adventurer I want to have an alignment so that I have something to guide my actions
 
 - can get and set alignment
 - alignments are Good, Evil, and Neutral
@@ -48,13 +48,13 @@ This iteration covers core functionality for leveling, combat, and character att
 
 > As an attacker I want to be able to damage my enemies so that they will die and I will live
 
-- If attack is successful, other character takes 1 point of damage when hit
+- If attack is successful, other adventurer takes 1 point of damage when hit
 - If a roll is a natural 20 then a critical hit is dealt and the damage is doubled
-- when hit points are 0 or fewer, the character is dead
+- when hit points are 0 or fewer, the adventurer is dead
 
 #### Feature: Character Has Abilities Scores
 
-> As a character I want to have several abilities so that I am not identical to other characters except in name
+> As a adventurer I want to have several abilities so that I am not identical to other adventurers except in name
 
 - Abilities are Strength, Dexterity, Constitution, Wisdom, Intelligence, Charisma
 - Abilities range from 1 to 20 and default to 10
@@ -70,7 +70,7 @@ This iteration covers core functionality for leveling, combat, and character att
 
 #### Feature: Character Ability Modifiers Modify Attributes
 
-> As a character I want to apply my ability modifiers improve my capabilities in combat so that I can vanquish my enemy with extreme prejudice
+> As a adventurer I want to apply my ability modifiers improve my capabilities in combat so that I can vanquish my enemy with extreme prejudice
 
 - add Strength modifier to:
     - attack roll and damage dealt
@@ -81,16 +81,16 @@ This iteration covers core functionality for leveling, combat, and character att
 
 #### Feature: A Character can gain experience when attacking
 
-> As a character I want to accumulate experience points (xp) when I attack my enemies so that I can earn bragging rights at the tavern
+> As a adventurer I want to accumulate experience points (xp) when I attack my enemies so that I can earn bragging rights at the tavern
 
-- When a successful attack occurs, the character gains 10 experience points
+- When a successful attack occurs, the adventurer gains 10 experience points
 
 #### Feature: A Character Can Level
 
-> As a character I want my experience points to increase my level and combat capabilities so that I can bring vengeance to my foes
+> As a adventurer I want my experience points to increase my level and combat capabilities so that I can bring vengeance to my foes
 
 - Level defaults to 1
-- After 1000 experience points, the character gains a level
+- After 1000 experience points, the adventurer gains a level
     - 0 xp -> 1st Level
     - 1000 xp -> 2nd Level
     - 2000 xp -> 3rd Level
@@ -101,11 +101,11 @@ This iteration covers core functionality for leveling, combat, and character att
 
 ### Iteration 2 - Classes
 
-Classes that a character can have.
+Classes that a adventurer can have.
 
 #### Feature: Characters Have Classes
 
-> As a player I want a character to have a class that customizes its capabilities so that I can play more interesting characters
+> As a player I want a adventurer to have a class that customizes its capabilities so that I can play more interesting adventurers
 
 ##### Ideas
 
@@ -140,22 +140,22 @@ Classes that a character can have.
 > As a player I want to play a Paladin so that I can smite evil, write wrongs, and be a self-righteous jerk
 
 - has 8 hit points per level instead of 5
-- +2 to attack and damage when attacking Evil characters
-- does triple damage when critting on an Evil character (i.e. add the +2 bonus for a regular attack, and then triple that)
+- +2 to attack and damage when attacking Evil adventurers
+- does triple damage when critting on an Evil adventurer (i.e. add the +2 bonus for a regular attack, and then triple that)
 - attacks roll is increased by 1 for every level instead of every other level
 - can only have Good alignment
 
 ### Iteration 3 - Races
 
-Races that a character can be.
+Races that a adventurer can be.
 
 #### Feature: Characters Have Races
 
 > As a player I want to play a Human so that I can be boring and unoriginal
 
-- all characters default to Human
+- all adventurers default to Human
 
-> As a player I want a character to have races other than Human that customize its capabilities so that I can play more interesting characters and wont be boring and unoriginal
+> As a player I want a adventurer to have races other than Human that customize its capabilities so that I can play more interesting adventurers and wont be boring and unoriginal
 
 ##### Ideas
 
@@ -184,7 +184,7 @@ Races that a character can be.
 - does adds 1 to critical range for critical hits (20 -> 19-20, 19-20 -> 18-20)
 - +2 to Armor Class when being attacked by orcs
 
-> As a player I want to play a Halfling so that I can steal from the other drunk characters
+> As a player I want to play a Halfling so that I can steal from the other drunk adventurers
 
 - +1 to Dexterity Modifier, -1 to Strength Modifier
 - +2 to Armor Class when being attacked by non Halfling (they are small and hard to hit)
@@ -192,13 +192,13 @@ Races that a character can be.
 
 ### Iteration 4 - Weapons, Armor & Items
 
-Items that enhance a characters capabilities.
+Items that enhance a adventurers capabilities.
 
 #### Feature: Weapons
 
-> As a character I want to be able to wield a single weapon so that I can achieve victory through superior firepower
+> As a adventurer I want to be able to wield a single weapon so that I can achieve victory through superior firepower
 
-- character can wield only one weapon
+- adventurer can wield only one weapon
 
 ##### Ideas
 
@@ -209,11 +209,11 @@ Items that enhance a characters capabilities.
 
 ##### Samples
 
-> As a character I want to be able to wield a longsword so that I can look cool
+> As a adventurer I want to be able to wield a longsword so that I can look cool
 
 - does 5 points of damage
 
-> As a character I want to be able to wield a +2 waraxe that so that I can *be* cool
+> As a adventurer I want to be able to wield a +2 waraxe that so that I can *be* cool
 
 - does 6 points of damage
 - +2 to attack
@@ -234,9 +234,9 @@ Items that enhance a characters capabilities.
 
 #### Feature: Armor
 
-> As a character I want to be able to don armor and shield so that I can protect myself from attack
+> As a adventurer I want to be able to don armor and shield so that I can protect myself from attack
 
-- character can only don one shield and wear one suit of armor
+- adventurer can only don one shield and wear one suit of armor
 
 ##### Ideas
 
@@ -246,7 +246,7 @@ Items that enhance a characters capabilities.
 
 ##### Samples
 
-> As a character I want to the be able to wear leather armor so that I can soften attacks against me
+> As a adventurer I want to the be able to wear leather armor so that I can soften attacks against me
 
 - +2 to Armor Class
 
@@ -255,7 +255,7 @@ Items that enhance a characters capabilities.
 - +8 to Armor Class
 - can only be worn by fighters (of any race) and dwarves (of any class)
 
-> As a character I want to the be able to wear magical leather armor of damage reduction so that I can soften attacks against me
+> As a adventurer I want to the be able to wear magical leather armor of damage reduction so that I can soften attacks against me
 
 - +2 to Armor Class
 - -2 to all damage received
@@ -274,7 +274,7 @@ Items that enhance a characters capabilities.
 
 #### Feature: Items
 
-> As a character I want to be able to have items that enhance my capabilities so that I can be more bad-ass
+> As a adventurer I want to be able to have items that enhance my capabilities so that I can be more bad-ass
 
 - can carry multiple items
 
@@ -286,15 +286,15 @@ Items that enhance a characters capabilities.
 
 ##### Samples
 
-> As a character I want to be able to wear a ring of protection so that I can be protected from attack
+> As a adventurer I want to be able to wear a ring of protection so that I can be protected from attack
 
   - adds +2 to armor class
 
-> As a character I want to be able to wear a belt of giant strength so that I can be even stronger in combat
+> As a adventurer I want to be able to wear a belt of giant strength so that I can be even stronger in combat
 
   - add +4 to Strength Score
 
-> As a character I want to be able to wear an amulet of the heavens so that I can strike down evil with holy power
+> As a adventurer I want to be able to wear an amulet of the heavens so that I can strike down evil with holy power
 
   - +1 to attack against Neutral enemies
   - +2 to attack against Evil enemies
@@ -302,4 +302,4 @@ Items that enhance a characters capabilities.
 
 ### Bonus Iteration - Battle Grid
 
-Build your own features here. Multiple characters can be on a grid-based map. Each square on the map has terrain that impacts the occupant or opponents attacking into it. Characters can move and weapons have ranges.
+Build your own features here. Multiple adventurers can be on a grid-based map. Each square on the map has terrain that impacts the occupant or opponents attacking into it. Characters can move and weapons have ranges.
