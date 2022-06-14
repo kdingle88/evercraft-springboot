@@ -1,4 +1,4 @@
-package com.kmd.evercraft.character;
+package com.evercraft;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
