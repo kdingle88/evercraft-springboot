@@ -17,6 +17,11 @@ public class AdventurerController {
         this.adventurerService = adventurerService;
     }
 
+    @GetMapping
+    public List<Adventurer> getCharacters() {
+        return adventurerService.getCharacters();
+    }
+
     @PostMapping
     public Adventurer createCharacter(@RequestBody Adventurer adventurer) {
 

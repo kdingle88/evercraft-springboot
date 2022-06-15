@@ -1,0 +1,24 @@
+### Create Adventurer
+
+POST http://localhost:8080/api/v1/characters
+Content-Type: application/json
+
+{ "name": "Steve", "alignment": "GOOD"}
+
+
+###
+
+# @name Fight Characters
+
+PUT http://localhost:8080/api/v1/characters/fight
+Content-Type: application/json
+
+[1,2]
+
+
+
+###
+
+# @name Get Characters
+GET http://localhost:8080/api/v1/characters
+Accept: application/json

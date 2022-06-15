@@ -78,4 +78,7 @@ public class AdventurerService {
         return attackedArmor <= totalRoll;
     }
 
+    public List<Adventurer> getCharacters() {
+        return adventurerRepository.findAll();
+    }
 }
